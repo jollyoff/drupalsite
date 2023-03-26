@@ -1,0 +1,19 @@
+services:
+  api.parser:
+    class: Drupal\api\Parser
+    arguments: ['@config.factory', '@date.formatter', '@module_handler', '@api.utilities', '@queue', '@datetime.time', '@http_client', '@file_system', '@logger.factory']
+  api.utilities:
+    class: Drupal\api\Utilities
+    arguments: ['@file_system', '@logger.factory', '@config.factory', '@current_route_match']
+  api.breadcrumbs:
+    class: Drupal\api\Breadcrumb\ApiBreadcrumbBuilder
+    tags:
+      - { name: breadcrumb_builder, priority: 100 }
+  api.twig_extension.safe_markup:
+    class: Drupal\api\TwigExtension\SafeMarkup
+    tags:
+      - { name: twig.extension }
+  api.path_processor.legacy_files:
+    class: Drupal\api\PathProcessor\PathProcessorLegacyFiles
+    tags:
+      - { name: path_processor_inbound, priority: 100 }

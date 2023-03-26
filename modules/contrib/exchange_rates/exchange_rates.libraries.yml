@@ -1,0 +1,7 @@
+exchange-rates:
+  version: 1.x
+  css:
+    component:
+      css/currency-flags.min.css: {}
+    theme:
+      css/exchange-rates.css: {}

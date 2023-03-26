@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - api_search_core
+id: docblock_search
+label: DocBlocks
+path: api
+weight: 0
+plugin: docblock_search
+configuration: {  }

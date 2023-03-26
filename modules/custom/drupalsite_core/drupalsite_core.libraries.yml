@@ -1,0 +1,5 @@
+layout_ds_article:
+  version: VERSION
+  css:
+    theme:
+      layouts/twocol_section/ds-article.css: {}

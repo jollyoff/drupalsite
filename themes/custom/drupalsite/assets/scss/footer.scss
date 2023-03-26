@@ -1,0 +1,48 @@
+@import "variables";
+
+.footer{
+  background-color: $grey;
+  padding: 2rem 1rem;
+  &-wrap{
+    max-width: 114rem;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: auto 1fr auto;
+  }
+}
+footer{
+  .block{
+    display: flex;
+    align-items: center;
+  }
+  .menu--main{
+    display: flex;
+    justify-content: center;
+  }
+  nav{
+    .menu{
+      display: flex;
+      li {
+        &:not(:last-child) {
+          margin-right: clamp(2rem, 2vw, 7rem);
+        }
+      }
+    }
+    a{
+      text-decoration: none;
+      text-transform: uppercase;
+      color: $black;
+    }
+  }
+}
+.ds-social-network{
+  &-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-gap: 0.5rem;
+    grid-template-columns: 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
+  }
+}

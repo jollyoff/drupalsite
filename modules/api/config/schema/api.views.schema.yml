@@ -1,0 +1,38 @@
+# Schema for the views plugins of the API module.
+
+views.field.service_tags:
+  type: views_field
+  label: 'String'
+  mapping:
+    type:
+      type: string
+      label: 'Type'
+    separator:
+      type: string
+      label: 'Separator'
+
+views.filter.service_tags:
+  type: views_filter
+  label: 'String'
+  mapping:
+    expose:
+      type: mapping
+      label: 'Exposed'
+      mapping:
+        placeholder:
+          type: label
+          label: 'Placeholder'
+
+views.style.html_dl_list:
+  type: views_style
+  label: 'HTML DL List'
+  mapping:
+    type:
+      type: string
+      label: 'List type'
+    wrapper_class:
+      type: string
+      label: 'Wrapper class'
+    class:
+      type: string
+      label: 'List class'

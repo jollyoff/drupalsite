@@ -1,0 +1,3 @@
+search.plugin.docblock_search:
+  type: sequence
+  label: 'DocBlock search'

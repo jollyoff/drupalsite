@@ -1,0 +1,96 @@
+# Tabs in API reference settings.
+api.settings:
+  route_name: api.settings
+  title: 'Settings'
+  base_route: api.settings
+  weight: 0
+api.wizard:
+  route_name: api.wizard
+  title: 'Quick wizard'
+  base_route: api.settings
+  weight: 1
+api.project:
+  route_name: entity.project.collection
+  title: 'Projects'
+  base_route: api.settings
+  weight: 2
+api.branch:
+  route_name: entity.branch.collection
+  title: 'Branches'
+  base_route: api.settings
+  weight: 3
+api.php_branch:
+  route_name: entity.php_branch.collection
+  title: 'PHP Branches'
+  base_route: api.settings
+  weight: 4
+api.external_branch:
+  route_name: entity.external_branch.collection
+  title: 'External Branches'
+  base_route: api.settings
+  weight: 5
+api.comments:
+  route_name: api.comments
+  title: 'Comment settings'
+  base_route: api.settings
+  weight: 6
+
+# Tabs in Project view/edit/delete.
+entity.project.view:
+  title: View
+  route_name: entity.project.canonical
+  base_route: entity.project.canonical
+entity.project.edit_form:
+  title: Edit
+  route_name: entity.project.edit_form
+  base_route: entity.project.canonical
+entity.project.delete_form:
+  title: Delete
+  route_name: entity.project.delete_form
+  base_route: entity.project.canonical
+  weight: 10
+
+# Tabs in Branch view/edit/delete.
+entity.branch.view:
+  title: View
+  route_name: entity.branch.canonical
+  base_route: entity.branch.canonical
+entity.branch.edit_form:
+  title: Edit
+  route_name: entity.branch.edit_form
+  base_route: entity.branch.canonical
+entity.branch.delete_form:
+  title: Delete
+  route_name: entity.branch.delete_form
+  base_route: entity.branch.canonical
+  weight: 10
+
+# Tabs in PhpBranch view/edit/delete.
+entity.php_branch.view:
+  title: View
+  route_name: entity.php_branch.canonical
+  base_route: entity.php_branch.canonical
+entity.php_branch.edit_form:
+  title: Edit
+  route_name: entity.php_branch.edit_form
+  base_route: entity.php_branch.canonical
+entity.php_branch.delete_form:
+  title: Delete
+  route_name: entity.php_branch.delete_form
+  base_route: entity.php_branch.canonical
+  weight: 10
+
+# Tabs in ExternalBranch view/edit/delete.
+entity.external_branch.view:
+  title: View
+  route_name: entity.external_branch.canonical
+  base_route: entity.external_branch.canonical
+entity.external_branch.edit_form:
+  title: Edit
+  route_name: entity.external_branch.edit_form
+  base_route: entity.external_branch.canonical
+entity.external_branch.delete_form:
+  title: Delete
+  route_name: entity.external_branch.delete_form
+  base_route: entity.external_branch.canonical
+  weight: 10

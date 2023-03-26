@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.api_comment
+    - field.field.comment.api_comment.field_api_comment_body
+  module:
+    - text
+id: comment.api_comment.default
+targetEntityType: comment
+bundle: api_comment
+mode: default
+content:
+  field_api_comment_body:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

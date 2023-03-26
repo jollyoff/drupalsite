@@ -1,0 +1,42 @@
+api.settings:
+  title: 'API reference'
+  route_name: api.settings
+  description: 'Configure the different API reference pages.'
+  parent: system.admin_config_development
+  weight: 0
+api.wizard:
+  title: 'Quick wizard'
+  route_name: api.wizard
+  description: 'Quick wizard.'
+  parent: api.settings
+  weight: 1
+api.project:
+  title: 'Projects'
+  route_name: entity.project.collection
+  description: 'Projects to be parsed by the module.'
+  parent: api.settings
+  weight: 2
+api.branch:
+  title: 'Branches'
+  route_name: entity.branch.collection
+  description: 'Branches to be parsed by the module.'
+  parent: api.settings
+  weight: 3
+api.php_branch:
+  title: 'PHP Branches'
+  route_name: entity.php_branch.collection
+  description: 'PHP Branches to be parsed by the module.'
+  parent: api.settings
+  weight: 4
+api.external_branch:
+  title: 'External Branches'
+  route_name: entity.external_branch.collection
+  description: 'External Branches to be parsed by the module.'
+  parent: api.settings
+  weight: 5
+api.comments:
+  title: 'Comments'
+  route_name: api.comments
+  description: 'Comment settings.'
+  parent: api.settings
+  weight: 6

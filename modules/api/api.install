@@ -1,0 +1,98 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the api module.
+ */
+
+use Drupal\api\Entity\PhpBranch;
+use Drupal\api\ExtendedQueries;
+use Drupal\api\Parser;
+use Drupal\api\StorageSchema\ApiContentStorageSchema;
+use Drupal\api\Utilities;
+
+/**
+ * Implements hook_install().
+ */
+function api_install() {
+  $pathautoConfig = \Drupal::configFactory()->getEditable('pathauto.settings');
+  $enabled_entity_types = $pathautoConfig->get('enabled_entity_types') ?? [];
+  $enabled_entity_types[] = 'project';
+  $pathautoConfig->set('enabled_entity_types', $enabled_entity_types);
+  $pathautoConfig->set('punctuation.period', 2);
+  $pathautoConfig->set('punctuation.underscore', 2);
+  $pathautoConfig->save();
+
+  // Create new PHP branch.
+  /** @var \Drupal\api\Interfaces\PhpBranchInterface $php_branch */
+  $php_branch = PhpBranch::create();
+  $php_branch
+    ->setTitle('PHP functions')
+    ->setFunctionList('http://doc.php.net/downloads/json/php_manual_en.json')
+    ->setFunctionUrlPattern('http://php.net/!function')
+    ->setUpdateFrequency(Utilities::ONE_MONTH)
+    ->save();
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function api_uninstall() {
+  $configFactory = \Drupal::configFactory();
+
+  // Remove config files that are no longer needed. Views are automatically
+  // detected and removed, but not the rest, so let's just delete them.
+  $configFactory->getEditable('api.settings')->delete();
+  $configFactory->getEditable('pathauto.pattern.projects')->delete();
+  $configFactory->getEditable('comment.type.api_comment')->delete();
+  $configFactory->getEditable('core.entity_form_display.comment.api_comment.default')->delete();
+  $configFactory->getEditable('core.entity_view_display.comment.api_comment.default')->delete();
+  $configFactory->getEditable('field.field.comment.api_comment.field_api_comment_body')->delete();
+  $configFactory->getEditable('field.storage.comment.field_api_comment_body')->delete();
+
+  // Alter existing config files that will still be present.
+  $pathautoConfig = $configFactory->getEditable('pathauto.settings');
+  $enabled_entity_types = $pathautoConfig->get('enabled_entity_types') ?? [];
+  $enabled_entity_types = array_diff(
+    $enabled_entity_types,
+    ['project']
+  );
+  $pathautoConfig->set('enabled_entity_types', $enabled_entity_types);
+  $pathautoConfig->save();
+
+  // Empty any queues.
+  \Drupal::queue(Parser::QUEUE_PARSE)->deleteQueue();
+  \Drupal::queue('api_delete_related')->deleteQueue();
+}
+
+/**
+ * Ensure new storage schema class is linked to the entities.
+ */
+function api_update_9201() {
+  $entity_type_manager = \Drupal::entityTypeManager();
+  $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+
+  $entities = ExtendedQueries::entityToTable();
+  foreach ($entities as $entity_id => $db_table) {
+    $entity_type = $entity_type_manager->getDefinition($entity_id)
+      ->setHandlerClass('storage_schema', ApiContentStorageSchema::class);
+    $definition_update_manager->updateEntityType($entity_type);
+  }
+}
+
+/**
+ * Ensure new indexes are created.
+ */
+function api_update_9202() {
+  $entity_type_manager = \Drupal::entityTypeManager();
+  $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+
+  $entities = ExtendedQueries::entityToTable();
+  foreach ($entities as $entity_id => $db_table) {
+    $entity_type = $entity_type_manager->getDefinition($entity_id);
+    $field_indexes = $entity_type->get('field_indexes') ?? [];
+    foreach ($field_indexes as $field_name) {
+      $definition_update_manager->updateFieldStorageDefinition($definition_update_manager->getFieldStorageDefinition($field_name, $entity_id));
+    }
+  }
+}

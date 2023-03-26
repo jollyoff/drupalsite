@@ -1,0 +1,3 @@
+administer exchange_rates:
+  title: 'Administer Exchange Rates settings'
+  description: 'Users with this permission will be able to administer the Exchange Rates settings.'

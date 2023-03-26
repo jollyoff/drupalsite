@@ -1,0 +1,55 @@
+{#
+/**
+ * @file
+ * Displays an API page for a global variable.
+ *
+ * Available variables:
+ * - alternatives: List of alternate versions (branches) of this global.
+ * - documentation: Documentation from the comment header of the global.
+ * - see: See also documentation.
+ * - deprecated: Deprecated documentation.
+ * - namespace: Name of the namespace for this function, if any.
+ * - defined: HTML reference to file that defines this global.
+ * - code: HTML-formatted declaration of this global.
+ * - related_topics: List of related groups/topics.
+ * - branch: Object with information about the branch.
+ * - object: Object with information about the global.
+ *
+ * @see api_preprocess_api_object_page()
+ *
+ * @ingroup themeable
+ */
+#}
+{{ alternatives }}
+
+{{ documentation|safe_markup }}
+
+{% if deprecated|render|striptags|trim %}
+  <div class="api-deprecated">
+    <h3>{{ 'Deprecated'|t }}</h3>
+    {{ deprecated|safe_markup }}
+  </div>
+{% endif %}
+
+{% if see|render|striptags|trim %}
+  <h3>{{ 'See also'|t }}</h3>
+  {{ see|safe_markup }}
+{% endif %}
+
+{% if related_topics|render|striptags|trim %}
+  <h3>{{ 'Related topics'|t }}</h3>
+  {{ related_topics }}
+{% endif %}
+
+<h3>{{ 'File'|t }}</h3>
+{{ defined }}
+
+{% if namespace|render|striptags|trim %}
+  <h3>{{ 'Namespace'|t }}</h3>
+  {{ namespace }}
+{% endif %}
+
+<h3>{{ 'Code'|t }}</h3>
+{{ code|safe_markup }}
+
+{{ comments }}

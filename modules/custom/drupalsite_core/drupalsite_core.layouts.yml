@@ -1,0 +1,14 @@
+ds_asrticle:
+  label: 'Two column ds'
+  path: layouts/twocol_section
+  template: ds-article
+  library: drupalsite_core/layout_ds_article
+  category: 'Drupal site'
+  default_region: content
+  icon_map:
+    - [content, sidebar]
+  regions:
+    content:
+      label: Content
+    sidebar:
+      label: Sidebar

@@ -1,0 +1,4 @@
+code-formatting:
+  css:
+    theme:
+      css/api.css: {}

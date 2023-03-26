@@ -1,0 +1,18 @@
+type: module
+name: 'API Search - Search API Solr Defaults'
+description: 'Enable this module for a best-practice default setup of Search API with the Solr backend for the API module. After installation it is recommended to uninstall this module again for performance reasons. The provided configuration will not be removed.'
+package: Search
+core_version_requirement: ^9 || ^10
+dependencies:
+  - drupal:comment
+  - drupal:text
+  - drupal:field
+  - drupal:views
+  - search_api_solr:search_api_solr
+  - facets:facets
+  - api:api
+
+# Information added by Drupal.org packaging script on 2022-09-14
+version: '2.0.0-rc17'
+project: 'api'
+datestamp: 1663143608

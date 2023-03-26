@@ -1,0 +1,21 @@
+.page{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  main{
+    flex-grow: 1;
+  }
+}
+.block-page-title-block{
+  padding: 0 1rem;
+  max-width: 114rem;
+  margin: 0 auto;
+}
+.contact-message-feedback-form{
+  max-width: 114rem;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+.content-info{
+  display: none;
+}

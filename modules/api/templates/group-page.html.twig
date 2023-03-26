@@ -1,0 +1,43 @@
+{#
+/**
+ * @file
+ * Displays an API page for a topic/group, with list of items in that group.
+ *
+ * Available variables:
+ * - alternatives: List of alternate versions (branches) of this group.
+ * - hide_alternatives: TRUE to hide the list of alternative versions.
+ * - documentation: Documentation from the comment header of the constant.
+ * - see: Related API objects.
+ * - related_topics: Related topics documentation.
+ * - objects: Formatted list of member objects, if any.
+ * - defined: HTML reference to file that defines this group.
+ *
+ * @ingroup themeable
+ */
+#}
+{% if not hide_alternatives %}
+  {{ alternatives }}
+{% endif %}
+
+{{ documentation|safe_markup }}
+
+{% if see|render|striptags|trim %}
+  <h3>{{ 'See also'|t }}</h3>
+  {{ see|safe_markup }}
+{% endif %}
+
+{% if related_topics|render|striptags|trim %}
+  <h3>{{ 'Parent topics'|t }}</h3>
+  {{ related_topics }}
+{% endif %}
+
+{% if defined|render|striptags|trim %}
+  <h3>{{ 'File'|t }}</h3>
+  {{ defined }}
+{% endif %}
+
+{{ objects }}
+
+{% if not hide_comments %}
+  {{ comments }}
+{% endif %}

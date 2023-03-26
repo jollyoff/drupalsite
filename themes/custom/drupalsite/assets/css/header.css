@@ -1,0 +1,41 @@
+.header {
+  background-color: #c41e3a;
+}
+.header-wrap {
+  max-width: 114rem;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: clamp(20px, 2vw, 50px);
+  grid-template-columns: auto 1fr auto;
+}
+
+header {
+  padding: 2rem 1rem;
+}
+header .block {
+  display: flex;
+  align-items: center;
+}
+header .menu--main {
+  justify-content: flex-end;
+}
+header nav .menu {
+  display: flex;
+}
+header nav .menu li:not(:last-child) {
+  margin-right: 2rem;
+}
+header nav a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #e8e8e8;
+}
+
+.block-system-branding-block a {
+  text-transform: uppercase;
+  font-size: 2rem;
+  color: #e8e8e8;
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=header.css.map */

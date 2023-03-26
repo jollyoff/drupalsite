@@ -1,0 +1,64 @@
+html{
+  font-size: 62.5%;
+}
+
+body{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
+  font-size: 1.4rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+img{
+  max-width: 100%;
+  height: auto;
+  vertical-align: top;
+}
+
+nav{
+  .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+}
+a{
+  text-decoration: none;
+}
+p{
+  margin-top: 0;
+}
+.text-formatted{
+  & > *{
+    margin-bottom: 0;
+  }
+}
+h1,h2,h3,h4{
+  margin-top: 0;
+}
+h1{
+  font-size: 25px;
+}
+h2{
+  font-size: 22px;
+  max-width: 114rem;
+  margin: 0 auto;
+}
+h3{
+  font-size: 19px;
+}
+h4{
+  font-size: 16px;
+}
+h5{
+  font-size: 13px;
+}
+h6{
+  font-size: 11px;
+}

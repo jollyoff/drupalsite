@@ -1,0 +1,79 @@
+{#
+/**
+ * @file
+ * Displays an API page for a class or interface, including list of members.
+ *
+ * Available variables:
+ * - alternatives: List of alternate versions (branches) of this class.
+ * - documentation: Documentation from the comment header of the class.
+ * - see: See also documentation.
+ * - deprecated: Deprecated documentation.
+ * - namespace: Name of the namespace for this function, if any.
+ * - implements: List of classes that implements this interface, if any.
+ * - hierarchy: Class hierarchy, if any.
+ * - objects: Listing of member variables, constants, and functions.
+ * - defined: HTML reference to file that defines this class.
+ * - code: HTML-formatted declaration and code for this class.
+ * - related_topics: List of related groups/topics.
+ * - call_links: Links to uses of this class, etc.
+ * - branch: Object with information about the branch.
+ * - object: Object with information about the class.
+ *
+ * @see api_preprocess_api_object_page()
+ *
+ * @ingroup themeable
+ */
+#}
+{{ alternatives }}
+
+{{ documentation|safe_markup }}
+
+{% if implements|render|striptags|trim %}
+  <h3>{{ 'Implemented by'|t }}</h3>
+  {{ implements|safe_markup }}
+{% endif %}
+
+{% if hierarchy|render|striptags|trim %}
+  <h3>{{ 'Hierarchy'|t }}</h3>
+  {{ hierarchy|safe_markup }}
+{% endif %}
+
+{% if deprecated|render|striptags|trim %}
+  <div class="api-deprecated">
+    <h3>{{ 'Deprecated'|t }}</h3>
+    {{ deprecated|safe_markup }}
+  </div>
+{% endif %}
+
+{% if see|render|striptags|trim %}
+  <h3>{{ 'See also'|t }}</h3>
+  {{ see|safe_markup }}
+{% endif %}
+
+{% if related_topics|render|striptags|trim %}
+  <h3>{{ 'Related topics'|t }}</h3>
+  {{ related_topics }}
+{% endif %}
+
+{% for link in call_links %}
+  {{ link|safe_markup }}
+{% endfor %}
+
+<h3>{{ 'File'|t }}</h3>
+{{ defined }}
+
+{% if namespace|render|striptags|trim %}
+  <h3>{{ 'Namespace'|t }}</h3>
+  {{ namespace }}
+{% endif %}
+
+<details class="api-view-source">
+  <summary>
+    {{ 'View source'|t }}
+  </summary>
+  {{ code|safe_markup }}
+</details>
+
+{{ objects }}
+
+{{ comments }}

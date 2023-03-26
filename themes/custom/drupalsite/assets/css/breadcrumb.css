@@ -1,0 +1,29 @@
+.region-breadcrumb   {
+  text-transform: uppercase;
+  font-size: 13px;
+  padding: 2rem 0;
+  color: #000000;
+  background-color: #e8e8e8;
+  display: flex;
+  justify-content: center;
+}
+.region-breadcrumb a {
+  color: #000000;
+}
+.region-breadcrumb .menu {
+  display: flex;
+  justify-content: center;
+}
+.region-breadcrumb .menu-item {
+  position: relative;
+}
+.region-breadcrumb .menu-item:not(:last-child) {
+  margin-right: 2.5rem;
+}
+.region-breadcrumb .menu-item:not(:last-child):before {
+  position: absolute;
+  right: -1.5rem;
+  top: 0;
+}
+
+/*# sourceMappingURL=breadcrumb.css.map */

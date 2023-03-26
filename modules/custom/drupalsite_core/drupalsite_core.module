@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function drupalsite_core_theme($existing, $type, $theme, $path) {
+  return[
+    'menu_user_anonymous' => [
+      'variables' => []
+    ],
+    'ds_social_network' => [
+    'variables' => []
+  ],
+  ];
+}
