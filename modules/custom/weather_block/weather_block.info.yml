@@ -1,0 +1,7 @@
+name: Weather Block
+type: module
+description: 'Displays weather for selected city'
+core_version_requirement: ^8 || ^9
+package: Custom
+
+
