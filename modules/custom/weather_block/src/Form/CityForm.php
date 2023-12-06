@@ -27,62 +27,65 @@ class CityForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    $weather_data = $this->getWeatherData();
+
     $form['weather_info'] = [
-      '#type' => 'markup',
-      '#prefix' => '<div id="weather-info">',
-      '#suffix' => '</div>',
+      '#theme' => 'item_list',
+      '#items' => $this->formatWeatherData($weather_data),
     ];
-    $form['city'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('City'),
-      '#required' => TRUE,
-    ];
-    $form['submit'] = [
-      '#type' => 'submit',
-      '#value' => $this->t('Get weather'),
-      '#ajax' => [
-        'callback' => '::ajaxSubmitForm',
-        'event' => 'click',
-      ],
-    ];
+
     return $form;
   }
 
   /**
-   * {@inheritdoc}
+   * Format weather data into an array of list items.
    */
-  public function validateForm(array &$form, FormStateInterface $form_state) {
-    $city = $form_state->getValue('city');
-    if (!preg_match('/^[a-zA-Z\s]+$/', $city)) {
-      $form_state->setErrorByName('city', $this->t('City name must contain only letters and spaces.'));
+  private function formatWeatherData($weather_data) {
+    $formatted_data = [];
+    foreach ($weather_data as $city => $temperature) {
+      $formatted_data[] = $this->t('@city: @temperature°C', [
+        '@city' => $city,
+        '@temperature' => $temperature,
+      ]);
     }
+    return $formatted_data;
   }
 
-  /**
-   * Ajax callback to update the weather information.
-   */
-  public function ajaxSubmitForm(array &$form, FormStateInterface $form_state) {
-    $city = $form_state->getValue('city');
-    $api_key = '8795cf1702a915bf4f6e1c1ca54fed35';
-    $url = 'http://api.openweathermap.org/data/2.5/weather?q=' . urlencode($city) . '&appid=' . $api_key;
-    $json = file_get_contents($url);
-    $data = json_decode($json, true);
-    $temperature = round($data['main']['temp'] - 273);
-    $weather_info = $this->t('Температура в @city: @temperature°C', [
-      '@city' => $city,
-      '@temperature' => $temperature,
-    ]);
-    $response = new \Drupal\Core\Ajax\AjaxResponse();
-    $response->addCommand(new \Drupal\Core\Ajax\HtmlCommand('#weather-info', $weather_info));
-    return $response;
-  }
   /**
   {@inheritdoc}
   */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $form_state->setRedirectUrl(Url::fromRoute('<current>'));
+
+  }
+  /**
+   * private function for getting array with temperature
+   */
+  private function getWeatherData() {
+    $cities = ['Вінниця', 'Дніпро', 'Донецьк', 'Житомир', 'Запоріжжя', 'Івано-Франківськ',
+      'Київ', 'Кропивницький', 'Луганськ', 'Луцьк', 'Львів', 'Миколаїв', 'Одеса',
+      'Полтава', 'Рівне', 'Суми', 'Тернопіль', 'Ужгород', 'Харків', 'Херсон',
+      'Хмельницький', 'Черкаси', 'Чернівці', 'Чернігів'];
+    $api_key = '8795cf1702a915bf4f6e1c1ca54fed35';
+
+    $weather_data = [];
+
+    foreach ($cities as $city) {
+      $url = 'http://api.openweathermap.org/data/2.5/weather?q=' . $city . '&appid=' . $api_key;
+      $json = file_get_contents($url);
+      $data = json_decode($json, true);
+
+      if (isset($data['main']['temp'])) {
+        $temperature = round($data['main']['temp'] - 273);
+        $weather_data += [$city => $temperature];
+      }
+    }
+
+    return $weather_data;
   }
 }
+
+
+
 
 
 
