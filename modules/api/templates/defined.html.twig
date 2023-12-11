@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Displays the documentation for a file and line number where an object is.
+ *
+ * Available variables:
+ * - file_link: Themed link to the file the object is in.
+ * - file_summary: Summary line for the file the object is in.
+ * - object: Object with information about the object being referenced.
+ * - branch: Object with information about the branch.
+ *
+ * @see api_preprocess_api_defined()
+ *
+ * @ingroup themeable
+ */
+#}
+<p class="api-defined">
+<dl>
+  <dt>
+    {% set startline = object.getStartLine() %}
+    {% if (startline) %}
+      {{ file_link|safe_markup }}, {{ 'line'|t }} {{ startline }}
+    {% else %}
+      {{ file_link|safe_markup }}
+    {% endif %}
+
+   </dt>
+{#  <dd>{{ file_summary|safe_markup }}</dd>#}
+</dl>
+</p>

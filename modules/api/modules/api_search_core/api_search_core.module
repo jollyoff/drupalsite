@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Contains api_search_core.module.
+ */
+
+use Drupal\Core\Link;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function api_search_core_help($route_name, RouteMatchInterface $route_match) {
+  $search_page_url = Link::createFromRoute(
+    t('Search overview page'),
+    'entity.search_page.collection'
+  )->toString();
+  switch ($route_name) {
+    case 'help.page.api_search_core':
+      $output = '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Makes DocBlock search available in the Drupal Core Search.') . '</p>';
+      $output .= '<p>' . t('Go to @search_page and see the new DocBlocks search page and endpoint.', [
+        '@search_page' => $search_page_url,
+      ]) . '</p>';
+      return $output;
+
+    default:
+  }
+}

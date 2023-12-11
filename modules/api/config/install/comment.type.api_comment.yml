@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: api_comment
+label: 'API pages comments'
+target_entity_type_id: docblock
+description: 'Allows commenting on documentation pages'

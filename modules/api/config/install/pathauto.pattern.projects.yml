@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - api
+id: projects
+label: Projects
+type: 'canonical_entities:project'
+pattern: 'api/[project:slug]'
+selection_criteria: {  }
+selection_logic: and
+weight: 0
+relationships: {  }

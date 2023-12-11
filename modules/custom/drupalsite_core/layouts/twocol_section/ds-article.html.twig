@@ -1,0 +1,23 @@
+{%
+  set classes = [
+  'layout',
+  'lt-ds-article',
+]
+%}
+{% if content %}
+  <div{{ attributes.addClass(classes) }}>
+
+    {% if content.content %}
+      <div {{ region_attributes.content.addClass('layout__region', 'lt-ds-article-content') }}>
+        {{ content.content }}
+      </div>
+    {% endif %}
+
+    {% if content.sidebar %}
+      <div {{ region_attributes.sidebar.addClass('layout__region', 'lt-ds-article-sidebar') }}>
+        {{ content.sidebar }}
+      </div>
+    {% endif %}
+
+  </div>
+{% endif %}

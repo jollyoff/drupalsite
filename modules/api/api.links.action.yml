@@ -1,0 +1,20 @@
+project.add_form:
+  route_name: entity.project.add_form
+  title: 'Add project'
+  appears_on:
+    - entity.project.collection
+branch.add_form:
+  route_name: entity.branch.add_form
+  title: 'Add branch'
+  appears_on:
+    - entity.branch.collection
+php_branch.add_form:
+  route_name: entity.php_branch.add_form
+  title: 'Add PHP branch'
+  appears_on:
+    - entity.php_branch.collection
+external_branch.add_form:
+  route_name: entity.external_branch.add_form
+  title: 'Add External branch'
+  appears_on:
+    - entity.external_branch.collection

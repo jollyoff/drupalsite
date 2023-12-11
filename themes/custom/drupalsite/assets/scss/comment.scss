@@ -1,0 +1,44 @@
+@import "variables";
+
+.links{
+  display: flex;
+  li {
+    list-style: none;
+    &:not(:last-child) {
+      margin-right: clamp(0rem, 2vw, 7rem);
+    }
+  }
+  a{
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #c4c4c4;
+  }
+}
+.comment-content{
+  max-width: 62rem;
+  padding-left: 2rem;
+  h3{
+    font-size: 22px;
+  }
+}
+article{
+  margin-top: 1rem;
+}
+.information-comment {
+  color: $black;
+  padding-left: 2rem;
+  display: flex;
+
+  & > p:not(:last-child) {
+    margin-right: 1rem;
+    position: relative;
+
+    &:before {
+      position: absolute;
+      content: ",";
+      right: -4px;
+      bottom: 0;
+    }
+  }
+}
+

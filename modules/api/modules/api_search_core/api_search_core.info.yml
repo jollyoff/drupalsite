@@ -1,0 +1,13 @@
+name: 'API Search - Core Integration'
+type: module
+description: 'Enable this module to make API DocBlocks searchable using Drupal Core Search.'
+core_version_requirement: ^9 || ^10
+package: Search
+dependencies:
+  - api:api
+  - drupal:search
+
+# Information added by Drupal.org packaging script on 2022-09-14
+version: '2.0.0-rc17'
+project: 'api'
+datestamp: 1663143608

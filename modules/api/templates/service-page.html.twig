@@ -1,0 +1,46 @@
+{#
+/**
+ * @file
+ * Displays an API page for a service, including a list of tags.
+ *
+ * Available variables:
+ * - alternatives: List of alternate versions (branches) of this class.
+ * - defined: HTML reference to file that defines this service.
+ * - code: HTML-formatted declaration and code for this service.
+ * - tags: List of tags for this service.
+ * - branch: Object with information about the branch.
+ * - object: Object with information about the service.
+ * - call_links: Links to references.
+ *
+ * @see api_preprocess_api_object_page()
+ *
+ * @ingroup themeable
+ */
+#}
+{{ alternatives }}
+
+{% if (class) %}
+  <h3>{{ 'Class'|t }}</h3>
+  {{ class|safe_markup }}
+{% endif %}
+
+{% if (tags) %}
+  <h3>{{ 'Tags'|t }}</h3>
+  {{ tags }}
+{% endif %}
+
+{% for link in call_links %}
+  {{ link|safe_markup }}
+{% endfor %}
+
+<h3>{{ 'File'|t }}</h3>
+{{ defined }}
+
+<details class="api-view-source">
+  <summary>
+    {{ 'View source'|t }}
+  </summary>
+  {{ code|safe_markup }}
+</details>
+
+{{ comments }}

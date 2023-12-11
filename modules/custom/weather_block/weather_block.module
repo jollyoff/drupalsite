@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * Implements hook_block_info().
+ */
+function weather_block_block_info() {
+  $blocks = [];
+
+  $blocks['weather_block'] = [
+    'info' => t('Weather Block'),
+  ];
+
+  return $blocks;
+}
+
+
+

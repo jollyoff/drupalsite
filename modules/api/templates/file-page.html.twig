@@ -1,0 +1,68 @@
+{#
+/**
+ * @file
+ * Displays an API page for a file and the objects defined in it.
+ *
+ * Available variables:
+ * - alternatives: List of alternate versions (branches) of this file.
+ * - documentation: Documentation from the comment header of the file.
+ * - see: See also documentation.
+ * - deprecated: Deprecated documentation.
+ * - namespace: Name of the namespace for this function, if any.
+ * - objects: List of functions, classes, etc. defined in the file.
+ * - call_links: Links to calling functions (for theme templates).
+ * - code: Source code for the file.
+ * - related_topics: List of related groups/topics.
+ * - defined: Location of the file.
+ * - branch: Object with information about the branch.
+ * - object: Object with information about the file.
+ *
+ * @see api_preprocess_api_file_page()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{{ alternatives }}
+
+{{ documentation|safe_markup }}
+
+{% if namespace|render|striptags|trim %}
+  <h3>{{ 'Namespace'|t }}</h3>
+  {{ namespace }}
+{% endif %}
+
+{% if deprecated|render|striptags|trim %}
+  <div class="api-deprecated">
+    <h3>{{ 'Deprecated'|t }}</h3>
+    {{ deprecated|safe_markup }}
+  </div>
+{% endif %}
+
+{% if see|render|striptags|trim %}
+  <h3>{{ 'See also'|t }}</h3>
+  {{ see|safe_markup }}
+{% endif %}
+
+{% for link in call_links %}
+  {{ link|safe_markup }}
+{% endfor %}
+
+<h3>{{ 'File'|t }}</h3>
+{{ defined }}
+
+<details class="api-view-source">
+  <summary>
+    {{ 'View source'|t }}
+  </summary>
+  {{ code|safe_markup }}
+</details>
+
+{% if related_topics|render|striptags|trim %}
+  <h3>{{ 'Related topics'|t }}</h3>
+  {{ related_topics }}
+{% endif %}
+
+{{ objects }}
+
+{{ comments }}

@@ -1,0 +1,164 @@
+api.settings:
+  path: '/admin/config/development/api'
+  defaults:
+    _form: '\Drupal\api\Form\ApiSettingsForm'
+    _title: 'API configuration'
+  requirements:
+    _permission: 'administer API reference'
+api.wizard:
+  path: '/admin/config/development/api/wizard'
+  defaults:
+    _form: '\Drupal\api\Form\QuickWizardForm'
+    _title: 'Quick wizard'
+  requirements:
+    _permission: 'administer API reference'
+api.comments:
+  path: '/admin/config/development/api/comments'
+  defaults:
+    _form: '\Drupal\api\Form\CommentsForm'
+    _title: 'Comments'
+  requirements:
+    _permission: 'administer API reference'
+api.branch.parse:
+  path: '/admin/config/development/api/branch/{branch}/parse'
+  defaults:
+    _controller: '\Drupal\api\Controller\BranchController::parse'
+  requirements:
+    _permission: 'administer API reference'
+  options:
+    parameters:
+      branch:
+        type: entity:branch
+api.full_list:
+  path: '/api/{project}/full_list/{branch}'
+  defaults:
+    _controller: '\Drupal\api\Controller\OutputController::fullList'
+  requirements:
+    _permission: 'access API reference'
+api.full_list_project:
+  path: '/api/{project}/full_list'
+  defaults:
+    _controller: '\Drupal\api\Controller\OutputController::fullListProject'
+  requirements:
+    _permission: 'access API reference'
+api.function_dump:
+  path: '/api/function_dump/{branch}'
+  defaults:
+    _controller: '\Drupal\api\Controller\OutputController::functionDump'
+  requirements:
+    _permission: 'access API reference'
+api.default:
+  path: '/api/{argument}'
+  defaults:
+    _controller: '\Drupal\api\Controller\OutputController::default'
+    argument: ''
+  requirements:
+    _permission: 'access API reference'
+api.projects:
+  path: '/api/projects'
+  defaults:
+    _controller: '\Drupal\api\Controller\OutputController::projectList'
+    _title: 'Projects'
+  requirements:
+    _permission: 'access API reference'
+api.branch_default_route:
+  path: '/api/{project}/{argument}'
+  defaults:
+    _controller: '\Drupal\api\Controller\OutputController::branchDefaultRoute'
+  requirements:
+    _permission: 'access API reference'
+api.branch_explicit_route:
+  path: '/api/{project}/{argument}/{branch}'
+  defaults:
+    _controller: '\Drupal\api\Controller\OutputController::branchExplicitRoute'
+  requirements:
+    _permission: 'access API reference'
+api.namespace_route:
+  path: '/api/{project}/namespace/{namespace}/{branch}'
+  defaults:
+    _controller: '\Drupal\api\Controller\OutputController::namespaceRoute'
+  requirements:
+    _permission: 'access API reference'
+api.file_references_route:
+  path: '/api/{project}/{filename}/{type}/{branch}'
+  defaults:
+    _controller: '\Drupal\api\Controller\OutputController::fileReferencesRoute'
+  requirements:
+    _permission: 'access API reference'
+api.detail_page_type_route:
+  path: '/api/{project}/{filename}/{type}/{item}/{branch}'
+  defaults:
+    _controller: '\Drupal\api\Controller\OutputController::detailPageTypeRoute'
+  requirements:
+    _permission: 'access API reference'
+api.detail_page_type_subtype_route:
+  path: '/api/{project}/{filename}/{type}/{subtype}/{item}/{branch}'
+  defaults:
+    _controller: '\Drupal\api\Controller\OutputController::detailPageTypeSubtypeRoute'
+  requirements:
+    _permission: 'access API reference'
+api.legacy_file_route:
+  path: '/api/file/{file_information}'
+  defaults:
+    _controller: '\Drupal\api\Controller\OutputController::legacyFileRoute'
+  requirements:
+    file_information: '^[^\?]*$'
+    _permission: 'access API reference'
+api.search.autocomplete:
+  path: '/api/search/autocomplete/{branch}'
+  defaults:
+    _controller: '\Drupal\api\Controller\AutocompleteController::searchAutocomplete'
+    _format: json
+  requirements:
+    _permission: 'access API reference'
+api.opensearch:
+  path: '/api/opensearch'
+  defaults:
+    _controller: '\Drupal\api\Controller\OpenSearchController::page'
+    _format: xml
+  requirements:
+    _permission: 'access API reference'
+api.opensearch.suggest:
+  path: '/api/suggest/{term}'
+  defaults:
+    _controller: '\Drupal\api\Controller\OpenSearchController::suggest'
+    _format: json
+  requirements:
+    _permission: 'access API reference'
+api.search.global:
+  path: '/apis/{term}'
+  defaults:
+    _controller: '\Drupal\api\Controller\SearchController::globalSearchRedirect'
+    term: ''
+  requirements:
+    _permission: 'access API reference'
+api.search.default:
+  path: '/api/search'
+  defaults:
+    _controller: '\Drupal\api\Controller\SearchController::defaultsRedirect'
+  requirements:
+    _permission: 'access API reference'
+api.search.branch:
+  path: '/api/search/{branch}/{term}'
+  defaults:
+    _controller: '\Drupal\api\Controller\SearchController::branchSearchRedirect'
+  requirements:
+    _permission: 'access API reference'
+api.search.project.branch:
+  path: '/api/{project}/{branch}/search'
+  defaults:
+    _controller: '\Drupal\api\Controller\SearchController::searchFormPage'
+  requirements:
+    _permission: 'access API reference'
+api.search.project.branch.term:
+  path: '/api/{project}/{branch}/search/{term}'
+  defaults:
+    _controller: '\Drupal\api\Controller\SearchController::searchListingPage'
+  requirements:
+    _permission: 'access API reference'
+api.search.term:
+  path: '/search/api/{term}'
+  defaults:
+    _controller: '\Drupal\api\Controller\SearchController::moduleSearchRedirect'
+  requirements:
+    _permission: 'access API reference'

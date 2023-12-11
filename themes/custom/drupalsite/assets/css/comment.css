@@ -1,0 +1,46 @@
+.links {
+  display: flex;
+}
+.links li {
+  list-style: none;
+}
+.links li:not(:last-child) {
+  margin-right: clamp(0rem, 2vw, 7rem);
+}
+.links a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #c4c4c4;
+}
+
+.comment-content {
+  max-width: 62rem;
+  padding-left: 2rem;
+}
+.comment-content h3 {
+  font-size: 22px;
+}
+
+article {
+  margin-top: 1rem;
+}
+
+.information-comment {
+  color: #000000;
+  padding-left: 2rem;
+  display: flex;
+}
+.information-comment > p:not(:last-child) {
+  margin-right: 1rem;
+  position: relative;
+}
+.information-comment > p:not(:last-child):before {
+  position: absolute;
+  content: ",";
+  right: -4px;
+  bottom: 0;
+}
+.js-filter-wrapper{
+  display: none;
+}
+/*# sourceMappingURL=comment.css.map */

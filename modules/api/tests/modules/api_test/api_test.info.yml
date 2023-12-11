@@ -1,0 +1,12 @@
+name: 'API Test'
+type: module
+description: 'Test module for the API module'
+core_version_requirement: ^9 || ^10
+package: 'Development'
+dependencies:
+  - 'api:api'
+
+# Information added by Drupal.org packaging script on 2022-09-14
+version: '2.0.0-rc17'
+project: 'api'
+datestamp: 1663143608

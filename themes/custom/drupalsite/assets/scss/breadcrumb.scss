@@ -1,0 +1,32 @@
+@import "variables";
+
+.region-breadcrumb{
+  text-transform: uppercase;
+  font-size: 13px;
+  padding: 2rem 0;
+  color: $black;
+  background-color: $grey;
+  display: flex;
+  justify-content: center;
+  a{
+    color: $black;
+  }
+  .menu {
+    display: flex;
+    justify-content: center;
+
+    &-item {
+      position: relative;
+
+      &:not(:last-child) {
+        margin-right: 2.5rem;
+
+        &:before {
+          position: absolute;
+          right: -1.5rem;
+          top: 0;
+        }
+      }
+    }
+  }
+}

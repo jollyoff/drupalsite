@@ -1,0 +1,562 @@
+<?php
+
+/**
+ * @file
+ * Contains api.module.
+ */
+
+use Drupal\api\ExtendedQueries;
+use Drupal\Component\Utility\Environment;
+use Drupal\Core\Database\Query\AlterableInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Link;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_help().
+ */
+function api_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the api module.
+    case 'help.page.api':
+      $output = '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This is an implementation of a subset of the Doxygen documentation generator specification, tuned to produce output that best benefits the Drupal code base. It is designed to assume the code it documents follows Drupal coding conventions, and supports documentation blocks in formats described on %doxygen_link.', [
+        '%doxygen_link' => Link::fromTextAndUrl('https://drupal.org/node/1354', Url::fromUri('https://drupal.org/node/1354'))->toString(),
+      ]) . '</p>';
+      $output .= '<h3>' . t('Set up') . '</h3>';
+      $output .= '<p>Visit the settings page to configure the module. You must have the relevant Drupal code base on the same machine as the site hosting the API module. Set up Projects and Branches to index your Drupal code base. If your server supports git, you can use the Quick Wizard feature to speed up the above process.</p>';
+      $output .= '<p>Indexing of PHP functions is also supported, by setting up a PHP Reference Branch. If the site has internet access, then the default settings should work fine. For local development environments that have a PHP manual installed, you can edit the link path to point to the appropriate location.</p>';
+      $output .= '<p>The module indexes code branches during cron runs, so make sure the site has cron functionality set up properly.</p>';
+
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function api_cron() {
+  // This might be a lengthy operation.
+  Environment::setTimeLimit(0);
+
+  /** @var \Drupal\api\Parser $parser */
+  $parser = Drupal::service('api.parser');
+  /** @var \Drupal\api\Utilities $utilities */
+  $utilities = Drupal::service('api.utilities');
+
+  // Remove cruft.
+  $utilities->deleteOrphanDocBlocks();
+
+  // Parse files.
+  $parse_results = $parser->parseAll() ?? [];
+  foreach ($parse_results as $type => $results) {
+    foreach ($results as $result) {
+      $utilities->logResultFromParsing($result, $type);
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_operation_alter().
+ */
+function api_entity_operation_alter(array &$operations, EntityInterface $entity) {
+  if ($entity->getEntityTypeId() == 'branch') {
+    $operations['parse'] = [
+      'title' => t('Re-Parse'),
+      'url' => Url::fromRoute('api.branch.parse', [
+        'branch' => $entity->id(),
+      ]),
+      'weight' => 50,
+    ];
+  }
+}
+
+/**
+ * Implements hook_query_TAG_alter().
+ */
+function api_query_group_namespace_alter(AlterableInterface $query) {
+  $fields =& $query->getFields();
+  if (!empty($fields['id'])) {
+    // https://www.drupal.org/project/drupal/issues/567148
+    // If 'ONLY_FULL_GROUP_BY' is on (default), we need to make 'id' an
+    // expression. Views only add the plain field.
+    unset($fields['id']);
+    $query->addExpression('MAX(id)', 'id');
+  }
+  $query->groupBy('namespace');
+}
+
+/**
+ * Implements hook_query_TAG_alter().
+ */
+function api_query_partial_match_alter(AlterableInterface $query) {
+  $conditions = &$query->conditions();
+  _api_title_condition_partial_match($conditions);
+}
+
+/**
+ * Finds (recursively) and change the condition of the query for the title.
+ *
+ * @param array $conditions
+ *   Conditions to check.
+ *
+ * @see _views_query_tag_alter_condition()
+ */
+function _api_title_condition_partial_match(array &$conditions) {
+  foreach ($conditions as $id => &$condition) {
+    if (is_numeric($id)) {
+      if (is_object($condition['field']) && method_exists($condition['field'], 'conditions')) {
+        $subconditions = &$condition['field']->conditions();
+        _api_title_condition_partial_match($subconditions);
+      }
+      elseif ((strpos($condition['field'], 'title') !== FALSE) && ($condition['operator'] == '=')) {
+        $condition['operator'] = 'LIKE';
+        $condition['value'] = '%' . $condition['value'] . '%';
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function api_views_data_alter(&$data) {
+  $docblock_table = ExtendedQueries::entityToTable('docblock');
+  $override_table = ExtendedQueries::entityToTable('docblock_override');
+  $reference_table = ExtendedQueries::entityToTable('docblock_reference');
+  $reference_count_table = ExtendedQueries::entityToTable('docblock_reference_count');
+
+  // Expose additional relationships that aren't directly picked up by some
+  // views that do multiple joins.
+  $data[$docblock_table]['override_docblock'] = [
+    'title' => t('DocBlock'),
+    'help' => t('(Override) DocBlock element.'),
+    'relationship' => [
+      'base' => $override_table,
+      'base field' => 'docblock',
+      'relationship field' => 'id',
+      'handler' => 'views_handler_relationship',
+      'id' => 'standard',
+      'label' => t('docblock'),
+    ],
+  ];
+  $data[$override_table]['overridden_docblock'] = [
+    'title' => t('Overridden DocBlock'),
+    'help' => t('(Override Reverse) Overridden DocBlock.'),
+    'relationship' => [
+      'base' => $docblock_table,
+      'base field' => 'id',
+      'relationship field' => 'overrides_docblock',
+      'handler' => 'views_handler_relationship',
+      'id' => 'standard',
+      'label' => t('overridden'),
+    ],
+  ];
+  $data[$docblock_table]['reference_counts'] = [
+    'title' => t('DocBlock count'),
+    'help' => t('DocBlock count.'),
+    'relationship' => [
+      'base' => $reference_count_table,
+      'base field' => 'object_name',
+      'relationship field' => 'namespaced_name',
+      'handler' => 'views_handler_relationship',
+      'id' => 'standard',
+      'label' => t('docblock count'),
+      'extra' => [
+        ['field' => 'reference_type', 'value' => 'override'],
+        ['field' => 'branch', 'left_field' => 'branch'],
+      ],
+    ],
+  ];
+  $data[$reference_table]['related_topic'] = [
+    'title' => t('Related topic dummy field'),
+    'relationship' => [
+      'base' => $docblock_table,
+      'base field' => 'object_name',
+      'field' => 'object_name',
+      'handler' => 'views_handler_relationship',
+      'id' => 'standard',
+      'extra' => [
+        ['field' => 'object_type', 'value' => 'group'],
+        ['field' => 'branch', 'left_field' => 'branch'],
+      ],
+      'label' => t('Related topic object'),
+      'title' => t('Related topic object'),
+      'help' => t('If this reference is of type "group", the documentation object for the group/topic.'),
+    ],
+  ];
+  // Additional joins needed to help with the "API Listing" blocks.
+  $data[$docblock_table]['references_count_call'] = [
+    'title' => t('Reference count dummy field for calls and other direct references'),
+    'relationship' => [
+      'base' => $reference_count_table,
+      'base field' => 'object_name',
+      'field' => 'object_name',
+      'handler' => 'views_handler_relationship',
+      'id' => 'standard',
+      'extra' => [
+        ['field' => 'reference_type', 'value' => 'call'],
+        ['field' => 'branch', 'left_field' => 'branch'],
+      ],
+      'label' => t('Reference counts: direct'),
+      'title' => t('Reference counts: direct'),
+      'help' => t('Reference count information for direct calls and uses'),
+    ],
+  ];
+  $data[$docblock_table]['references_count_call_namespaced'] = [
+    'title' => t('Reference count dummy field for calls and other direct references, with namespaces'),
+    'relationship' => [
+      'base' => $reference_count_table,
+      'base field' => 'object_name',
+      'field' => 'namespaced_name',
+      'handler' => 'views_handler_relationship',
+      'id' => 'standard',
+      'extra' => [
+        ['field' => 'reference_type', 'value' => 'call'],
+        ['field' => 'branch', 'left_field' => 'branch'],
+      ],
+      'label' => t('Reference counts: direct, namespaced'),
+      'title' => t('Reference counts: direct, namespaced'),
+      'help' => t('Reference count information for direct calls and uses, found by namespaced name'),
+    ],
+  ];
+  $data[$docblock_table]['references_count_string'] = [
+    'title' => t('Reference count dummy field for strings'),
+    'relationship' => [
+      'base' => $reference_count_table,
+      'base field' => 'object_name',
+      'field' => 'object_name',
+      'handler' => 'views_handler_relationship',
+      'id' => 'standard',
+      'extra' => [
+        ['field' => 'reference_type', 'value' => 'string'],
+        ['field' => 'branch', 'left_field' => 'branch'],
+      ],
+      'label' => t('Reference count: strings'),
+      'title' => t('Reference count: strings'),
+      'help' => t('Reference count information for strings'),
+    ],
+  ];
+  $data[$docblock_table]['references_count_string_namespaced'] = [
+    'title' => t('Reference count dummy field for strings with namespaces'),
+    'relationship' => [
+      'base' => $reference_count_table,
+      'base field' => 'object_name',
+      'field' => 'namespaced_name',
+      'handler' => 'views_handler_relationship',
+      'id' => 'standard',
+      'extra' => [
+        ['field' => 'reference_type', 'value' => 'string'],
+        ['field' => 'branch', 'left_field' => 'branch'],
+      ],
+      'label' => t('Reference count: strings, namespaced'),
+      'title' => t('Reference count: strings, namespaced'),
+      'help' => t('Reference count information for strings, matching on namespaced name'),
+    ],
+  ];
+  $data[$docblock_table]['references_count_override'] = [
+    'title' => t('Reference count dummy field for overrides'),
+    'relationship' => [
+      'base' => $reference_count_table,
+      'base field' => 'object_name',
+      'field' => 'namespaced_name',
+      'handler' => 'views_handler_relationship',
+      'id' => 'standard',
+      'extra' => [
+        ['field' => 'reference_type', 'value' => 'override'],
+        ['field' => 'branch', 'left_field' => 'branch'],
+      ],
+      'label' => t('Reference count: overrides'),
+      'title' => t('Reference count: overrides'),
+      'help' => t('Reference count information for class member overrides'),
+    ],
+  ];
+  $data[$docblock_table]['references_count_use'] = [
+    'title' => t('Reference count dummy field for uses'),
+    'relationship' => [
+      'base' => $reference_count_table,
+      'base field' => 'object_name',
+      'field' => 'namespaced_name',
+      'handler' => 'views_handler_relationship',
+      'id' => 'standard',
+      'extra' => [
+        ['field' => 'reference_type', 'value' => 'use'],
+        ['field' => 'branch', 'left_field' => 'branch'],
+      ],
+      'label' => t('Reference counts: use statements'),
+      'title' => t('Reference counts: use statements'),
+      'help' => t('Reference count information for use statements'),
+    ],
+  ];
+  $data[$docblock_table]['all_service_tags'] = [
+    'title' => t('Service tag'),
+    'field' => [
+      'title' => t('All service tags'),
+      'help' => t('Display all tags for a service item.'),
+      'id' => 'service_tags',
+      'no group by' => TRUE,
+      'click sortable' => FALSE,
+    ],
+    'filter' => [
+      'help' => t('Filter on service tags for a service item'),
+      'id' => 'service_tags',
+    ],
+  ];
+  $data[$docblock_table]['references'] = [
+    'title' => t('References dummy field'),
+    'relationship' => [
+      'base' => $reference_table,
+      'base field' => 'docblock',
+      'field' => 'id',
+      'id' => 'standard',
+      'label' => t('All references this item has'),
+      'title' => t('All references this item has'),
+      'help' => t('All items that this item references, such as other function calls. This will create duplicate records, unless you filter.'),
+    ],
+  ];
+  // Alter default plugin for file_name fields to process the path.
+  if (!empty($data[$docblock_table]['file_name']['argument']['id'])) {
+    $data[$docblock_table]['file_name']['argument']['id'] = 'file_name';
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function api_preprocess_page(&$variables) {
+  $variables['#attached']['library'][] = 'api/code-formatting';
+}
+
+/**
+ * Implements hook_theme().
+ */
+function api_theme() {
+  return [
+    'project' => [
+      'render element' => 'elements',
+      'file' => 'api.theme.inc',
+    ],
+    'views_view_dl_list' => [
+      'variables' => [],
+      'template' => 'views-view-dl-list',
+      'file' => 'api.theme.inc',
+    ],
+    'api_defined' => [
+      'variables' => [
+        'branch' => NULL,
+        'object' => NULL,
+      ],
+      'template' => 'defined',
+      'file' => 'api.theme.inc',
+    ],
+    'api_functions' => [
+      'variables' => [
+        'functions' => [],
+      ],
+      'template' => 'functions',
+    ],
+    'api_function_page' => [
+      'variables' => [
+        'branch' => NULL,
+        'object' => NULL,
+        'documentation' => NULL,
+        'parameters' => NULL,
+        'return' => NULL,
+        'related_topics' => NULL,
+        'call_links' => [],
+        'code' => NULL,
+        'see' => NULL,
+        'deprecated' => NULL,
+        'throws' => NULL,
+        'class' => NULL,
+      ],
+      'template' => 'function-page',
+      'file' => 'api.theme.inc',
+    ],
+    'api_constant_page' => [
+      'variables' => [
+        'branch' => NULL,
+        'object' => NULL,
+        'documentation' => NULL,
+        'code' => NULL,
+        'related_topics' => NULL,
+        'see' => NULL,
+        'deprecated' => NULL,
+        'class' => NULL,
+        'call_links' => [],
+      ],
+      'template' => 'constant-page',
+      'file' => 'api.theme.inc',
+    ],
+    'api_global_page' => [
+      'variables' => [
+        'branch' => NULL,
+        'object' => NULL,
+        'documentation' => NULL,
+        'code' => NULL,
+        'related_topics' => NULL,
+        'see' => NULL,
+        'deprecated' => NULL,
+      ],
+      'template' => 'global-page',
+      'file' => 'api.theme.inc',
+    ],
+    'api_property_page' => [
+      'variables' => [
+        'branch' => NULL,
+        'object' => NULL,
+        'documentation' => NULL,
+        'code' => NULL,
+        'related_topics' => NULL,
+        'see' => NULL,
+        'deprecated' => NULL,
+        'var' => NULL,
+        'class' => NULL,
+      ],
+      'template' => 'property-page',
+      'file' => 'api.theme.inc',
+    ],
+    'api_class_page' => [
+      'variables' => [
+        'branch' => NULL,
+        'object' => NULL,
+        'documentation' => NULL,
+        'implements' => NULL,
+        'hierarchy' => NULL,
+        'objects' => NULL,
+        'code' => NULL,
+        'related_topics' => NULL,
+        'see' => NULL,
+        'deprecated' => NULL,
+        'call_links' => [],
+      ],
+      'template' => 'class-page',
+      'file' => 'api.theme.inc',
+    ],
+    'api_namespace_page' => [
+      'variables' => [
+        'branch' => NULL,
+        'name' => '',
+        'listing' => NULL,
+      ],
+      'template' => 'namespace-page',
+      'file' => 'api.theme.inc',
+    ],
+    'api_service_page' => [
+      'variables' => [
+        'branch' => NULL,
+        'object' => NULL,
+        'class' => NULL,
+        'code' => NULL,
+        'tags' => NULL,
+        'call_links' => [],
+      ],
+      'template' => 'service-page',
+      'file' => 'api.theme.inc',
+    ],
+    'api_file_page' => [
+      'variables' => [
+        'object' => NULL,
+        'documentation' => NULL,
+        'objects' => NULL,
+        'code' => NULL,
+        'see' => NULL,
+        'deprecated' => NULL,
+        'related_topics' => NULL,
+        'defined' => '',
+        'call_links' => [],
+      ],
+      'template' => 'file-page',
+      'file' => 'api.theme.inc',
+    ],
+    'api_group_page' => [
+      'variables' => [
+        'branch' => NULL,
+        'object' => NULL,
+        'documentation' => NULL,
+        'objects' => NULL,
+        'see' => NULL,
+        'related_topics' => NULL,
+        'hide_alternatives' => FALSE,
+        'hide_comments' => FALSE,
+      ],
+      'template' => 'group-page',
+      'file' => 'api.theme.inc',
+    ],
+    'api_branch_default_page' => [
+      'variables' => [
+        'branch' => NULL,
+        'api_admin_permission' => FALSE,
+        'types' => [],
+        'topics' => '',
+        'def_group' => [],
+        'search_form' => [],
+        'other_projects' => FALSE,
+      ],
+      'template' => 'branch-default-page',
+    ],
+    'api_class_section' => [
+      'variables' => [
+        'class' => NULL,
+        'branch' => NULL,
+      ],
+      'template' => 'class-section',
+      'file' => 'api.theme.inc',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_entity_base_field_info_alter().
+ *
+ * Alter base field definitions for a docblock based on the comments settings.
+ *
+ * @todo WARNING: This hook will be changed in
+ * https://www.drupal.org/node/2346329.
+ */
+function api_entity_base_field_info_alter(array &$fields, EntityTypeInterface $entity_type) {
+  if ($entity_type->id() == 'docblock' && !empty($fields['comments'])) {
+    $config = \Drupal::config('api.comments')->get();
+    unset($config['status']);
+
+    /** @var \Drupal\Core\Field\FieldDefinitionInterface[] $fields */
+    $settings = array_merge($fields['comments']->getSettings(), $config);
+    $fields['comments']->setSettings($settings);
+  }
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function api_page_attachments(array &$attachments) {
+  $title = \Drupal::config('api.settings')->get('opensearch_name') ?? t('Drupal API');
+  $attachments['#attached']['html_head_link'][] = [
+    [
+      'rel' => 'search',
+      'title' => $title,
+      'type' => 'application/opensearchdescription+xml',
+      'href' => Url::fromRoute('api.opensearch', [], ['absolute' => TRUE])->toString(),
+    ],
+    TRUE,
+  ];
+}
+
+/**
+ * Alter the definitions of parsing functions for files.
+ *
+ * You can implement this hook to parse new extensions or the parser used in
+ * existing ones.
+ *
+ * This hook is invoked by \Drupal\api\Parser::parseFunctions().
+ *
+ * @param array $parse_functions
+ *   List of parsing functions by extension.
+ */
+function hook_api_parse_functions_alter(array &$parse_functions) {
+  // Parse '.foo' files as PHP.
+  $parse_functions['foo'] = 'parsePhp';
+}

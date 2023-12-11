@@ -1,0 +1,1 @@
+@media screen and (min-width:40em){.layout--fourcol-section > .layout__region{flex:0 1 25%;}}.lt-ds-article{max-width:114rem;padding:0 1rem;margin:0 auto;display:grid;grid-gap:3rem;}@media screen and (min-width:960px){.lt-ds-article{grid-gap:6rem;grid-template-columns:1fr 400px;}}

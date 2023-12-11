@@ -1,0 +1,14 @@
+@import "variables";
+
+.view-width-max{
+  max-width: 116rem;
+  padding: 0 1rem;
+  margin: auto;
+}
+.view-grid-4{
+  .view-content{
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

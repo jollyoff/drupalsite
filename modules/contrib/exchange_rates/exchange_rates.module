@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains exchange_rates.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function exchange_rates_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the exchange_rates module.
+    case 'help.page.exchange_rates':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module converts a base currency into multiple foreign currencies using exchangeratesapi.io.') . '</p>';
+      return $output;
+
+    default:
+  }
+}

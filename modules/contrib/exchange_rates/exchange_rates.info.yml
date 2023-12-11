@@ -1,0 +1,11 @@
+name: 'Exchange Rates'
+type: module
+description: 'Converts a base currency into multiple foreign currencies using exchangeratesapi.io'
+core: 8.x
+core_version_requirement: ^8 || ^9
+package: 'Custom'
+
+# Information added by Drupal.org packaging script on 2020-06-06
+version: '8.x-1.3'
+project: 'exchange_rates'
+datestamp: 1591478546

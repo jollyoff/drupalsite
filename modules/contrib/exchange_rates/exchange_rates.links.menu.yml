@@ -1,0 +1,5 @@
+exchange_rates.settings:
+  title: 'Exchange Rates'
+  route_name: exchange_rates.settings
+  description: 'Sets the base currency and multiple foreign currencies to convert'
+  parent: system.admin_config_regional

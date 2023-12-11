@@ -1,0 +1,49 @@
+@import "variables";
+
+.header {
+  background-color: $red;
+  &-wrap{
+    max-width: 114rem;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: clamp(20px,2vw,50px);
+    grid-template-columns: auto 1fr auto;
+  }
+}
+header{
+  padding: 2rem 1rem;
+  .block{
+    display: flex;
+    align-items: center;
+  }
+  .menu--main{
+    justify-content: flex-end;
+  }
+  nav{
+    .menu{
+      display: flex;
+      li {
+        &:not(:last-child) {
+          margin-right: 2rem;
+        }
+      }
+    }
+    a{
+      text-decoration: none;
+      text-transform: uppercase;
+      color: $grey;
+    }
+  }
+}
+.block-system-branding-block{
+  a{
+    text-transform: uppercase;
+    font-size: 2rem;
+    color: $grey;
+    text-decoration: none;
+  }
+}
+
+.js-form-type-search{
+
+}

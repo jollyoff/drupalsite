@@ -1,0 +1,16 @@
+#exchange-rates-block-form .container-inline .currency-flag {
+  display: inline-block;
+}
+
+#exchange-rates-block-form .container-inline .exchange-rates-base-currency {
+  width: 7.1em;
+}
+
+#exchange-rates-block-form .container-inline label {
+  display: inline-block;
+  width: 3.5em;
+}
+
+#exchange-rates-block-form .container-inline label:after {
+  content: ":";
+}

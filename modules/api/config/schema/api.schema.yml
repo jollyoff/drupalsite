@@ -1,0 +1,61 @@
+api.settings:
+  type: config_object
+  label: 'API settings'
+  mapping:
+    breaks_where:
+      type: string
+      label: 'Breaks where'
+    breaks_tag:
+      type: string
+      label: 'Breaks tag'
+    default_branch_project:
+      type: string
+      label: 'Default Branch and Project'
+    branches_per_cron:
+      type: integer
+      label: 'Branches to process per cron'
+    remove_orphan_files:
+      type: integer
+      label: 'Remove orphan files (and related docblocks) after this number of days'
+    opensearch_name:
+      type: string
+      label: 'OpenSearch name'
+    opensearch_description:
+      type: string
+      label: 'OpenSearch description'
+    git_base_path:
+      type: string
+      label: 'Base path to store git repositories'
+
+api.comments:
+  type: config_object
+  label: 'API comments settings'
+  mapping:
+    status:
+      type: integer
+      label: 'Status'
+    default_mode:
+      type: integer
+      label: 'Default mode'
+    anonymous:
+      type: integer
+      label: 'Anonymous'
+    per_page:
+      type: integer
+      label: 'Per page'
+    form_location:
+      type: integer
+      label: 'Form location'
+    preview:
+      type: integer
+      label: 'Preview'
+
+block.settings.api_navigation_block:
+  type: block_settings
+  label: 'API Navigation block configuration'
+  mapping:
+    navigation_block_display:
+      type: sequence
+      label: 'Show on'
+      sequence:
+        type: string

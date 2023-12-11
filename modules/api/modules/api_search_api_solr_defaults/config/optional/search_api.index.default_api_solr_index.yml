@@ -1,0 +1,251 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api.server.default_solr_server
+  module:
+    - api
+    - search_api
+id: default_api_solr_index
+name: 'Default API solr index'
+description: 'Default solr index. Tweak as needed for each individual site.'
+read_only: false
+field_settings:
+  branch_core_compatibility:
+    label: 'Branch » Branch » Core compatibility'
+    datasource_id: 'entity:docblock'
+    property_path: 'branch:entity:core_compatibility'
+    type: string
+    dependencies:
+      module:
+        - api
+  branch_slug:
+    label: 'Branch » Branch » Slug / Branch name'
+    datasource_id: 'entity:docblock'
+    property_path: 'branch:entity:slug'
+    type: string
+    dependencies:
+      module:
+        - api
+  branch_title:
+    label: 'Branch » Branch » Title'
+    datasource_id: 'entity:docblock'
+    property_path: 'branch:entity:title'
+    type: string
+    dependencies:
+      module:
+        - api
+  branch_weight:
+    label: 'Branch » Branch » Weight'
+    datasource_id: 'entity:docblock'
+    property_path: 'branch:entity:weight'
+    type: integer
+    dependencies:
+      module:
+        - api
+  code:
+    label: Code
+    datasource_id: 'entity:docblock'
+    property_path: code
+    type: text
+    dependencies:
+      module:
+        - api
+  deprecated:
+    label: Deprecated
+    datasource_id: 'entity:docblock'
+    property_path: deprecated
+    type: text
+    dependencies:
+      module:
+        - api
+  documentation:
+    label: Documentation
+    datasource_id: 'entity:docblock'
+    property_path: documentation
+    type: text
+    dependencies:
+      module:
+        - api
+  file_name:
+    label: 'File name'
+    datasource_id: 'entity:docblock'
+    property_path: file_name
+    type: string
+    dependencies:
+      module:
+        - api
+  is_drupal:
+    label: 'Is Drupal'
+    datasource_id: 'entity:docblock'
+    property_path: is_drupal
+    type: boolean
+    dependencies:
+      module:
+        - api
+  member_name:
+    label: 'Member name'
+    datasource_id: 'entity:docblock'
+    property_path: member_name
+    type: string
+    dependencies:
+      module:
+        - api
+  modifiers:
+    label: Modifiers
+    datasource_id: 'entity:docblock'
+    property_path: modifiers
+    type: string
+    dependencies:
+      module:
+        - api
+  namespace:
+    label: Namespace
+    datasource_id: 'entity:docblock'
+    property_path: namespace
+    type: string
+    dependencies:
+      module:
+        - api
+  namespaced_name:
+    label: 'Namespaced name'
+    datasource_id: 'entity:docblock'
+    property_path: namespaced_name
+    type: string
+    dependencies:
+      module:
+        - api
+  object_name:
+    label: 'Object name'
+    datasource_id: 'entity:docblock'
+    property_path: object_name
+    type: string
+    dependencies:
+      module:
+        - api
+  object_type:
+    label: 'Object type'
+    datasource_id: 'entity:docblock'
+    property_path: object_type
+    type: string
+    dependencies:
+      module:
+        - api
+  project_slug:
+    label: 'Branch » Branch » Project » Project » Slug'
+    datasource_id: 'entity:docblock'
+    property_path: 'branch:entity:project:entity:slug'
+    type: string
+    dependencies:
+      module:
+        - api
+  project_title:
+    label: 'Branch » Branch » Project » Project » Title'
+    datasource_id: 'entity:docblock'
+    property_path: 'branch:entity:project:entity:title'
+    type: string
+    dependencies:
+      module:
+        - api
+  project_type:
+    label: 'Branch » Branch » Project » Project » Type'
+    datasource_id: 'entity:docblock'
+    property_path: 'branch:entity:project:entity:type'
+    type: string
+    dependencies:
+      module:
+        - api
+  see:
+    label: See
+    datasource_id: 'entity:docblock'
+    property_path: see
+    type: text
+    dependencies:
+      module:
+        - api
+  summary:
+    label: Summary
+    datasource_id: 'entity:docblock'
+    property_path: summary
+    type: text
+    dependencies:
+      module:
+        - api
+  throws:
+    label: Throws
+    datasource_id: 'entity:docblock'
+    property_path: throws
+    type: text
+    dependencies:
+      module:
+        - api
+  title:
+    label: Title
+    datasource_id: 'entity:docblock'
+    property_path: title
+    type: string
+    dependencies:
+      module:
+        - api
+  var:
+    label: Var
+    datasource_id: 'entity:docblock'
+    property_path: var
+    type: text
+    dependencies:
+      module:
+        - api
+datasource_settings:
+  'entity:docblock': {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  entity_type: {  }
+  highlight:
+    weights:
+      postprocess_query: 0
+    prefix: '<strong>'
+    suffix: '</strong>'
+    excerpt: true
+    excerpt_always: false
+    excerpt_length: 256
+    exclude_fields: {  }
+    highlight: always
+    highlight_partial: false
+  ignorecase:
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+    all_fields: false
+    fields:
+      - branch_core_compatibility
+      - branch_slug
+      - branch_title
+      - code
+      - deprecated
+      - documentation
+      - file_name
+      - member_name
+      - modifiers
+      - namespace
+      - namespaced_name
+      - object_name
+      - object_type
+      - project_slug
+      - project_title
+      - project_type
+      - see
+      - summary
+      - throws
+      - title
+      - var
+  language_with_fallback: {  }
+  rendered_item: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  cron_limit: 50
+  index_directly: true
+  track_changes_in_references: true
+server: default_solr_server

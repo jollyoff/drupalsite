@@ -1,0 +1,60 @@
+{#
+/**
+ * @file
+ * Displays a branch overview page.
+ *
+ * Available variables:
+ * - branch: Information about the branch to display an overview of.
+ * - types: Types of documentation elements available.
+ * - topics: List of defined topics in a branch.
+ * - api_admin_permission: Whether current user has admin permissions on the module or not.
+ *
+ * @ingroup themeable
+ */
+#}
+{% if branch is not empty %}
+  {% if types.groups is not empty %}
+    <h3><a href='/api/{{ branch.getProject().getSlug() }}/groups/{{ branch.getSlug()}}'>{{ 'Topics'|t }}</a></h3>
+    {{ def_group }}
+    {{ topics }}
+  {% endif %}
+
+  {% if types.files is not empty %}
+    <h3><a href='/api/{{ branch.getProject().getSlug() }}/files/{{ branch.getSlug()}}'>{{ 'Files'|t }}</a></h3>
+  {% endif %}
+
+  {% if types.globals is not empty %}
+    <h3><a href='/api/{{ branch.getProject().getSlug() }}/globals/{{ branch.getSlug()}}'>{{ 'Globals'|t }}</a></h3>
+  {% endif %}
+
+  {% if types.constants is not empty %}
+    <h3><a href='/api/{{ branch.getProject().getSlug() }}/constants/{{ branch.getSlug()}}'>{{ 'Constants'|t }}</a></h3>
+  {% endif %}
+
+  {% if types.functions is not empty %}
+    <h3><a href='/api/{{ branch.getProject().getSlug() }}/functions/{{ branch.getSlug()}}'>{{ 'Functions'|t }}</a></h3>
+  {% endif %}
+
+  {% if types.classes is not empty %}
+    <h3><a href='/api/{{ branch.getProject().getSlug() }}/classes/{{ branch.getSlug()}}'>{{ 'Classes and Interfaces'|t }}</a></h3>
+  {% endif %}
+
+  {% if types.namespaces is not empty %}
+    <h3><a href='/api/{{ branch.getProject().getSlug() }}/namespaces/{{ branch.getSlug()}}'>{{ 'Namespaces'|t }}</a></h3>
+  {% endif %}
+
+  {% if types.deprecated is not empty %}
+    <h3><a href='/api/{{ branch.getProject().getSlug() }}/deprecated/{{ branch.getSlug()}}'>{{ 'Deprecated'|t }}</a></h3>
+  {% endif %}
+
+  <h3>{{ 'API search'|t }}</h3>
+  {{ search_form }}
+
+  {% if other_projects %}
+    <p class="api-switch"><strong><a href="/api/projects">{{ 'Other projects'|t }}</a></strong></p>
+  {% endif %}
+{% endif %}
+
+{% if api_admin_permission %}
+  <p class="api-no-mainpage"><em>{{ 'A main page for this branch has not been indexed. A documentation comment with <code>@mainpage</code> needs to exist, or has not been indexed yet. For older versions of Drupal core, this is available in the <a href="https://www.drupal.org/project/documentation">documentation project</a> in the <code>developer</code> subdirectory.'|t }}</em></p>
+{% endif %}

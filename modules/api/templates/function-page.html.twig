@@ -1,0 +1,88 @@
+{#
+/**
+ * @file
+ * Displays an API page for a function.
+ *
+ * Available variables:
+ * - alternatives: List of alternate versions (branches) of this function.
+ * - documentation: Documentation from the comment header of the function.
+ * - parameters: Function parameter documentation.
+ * - return: Function return value documentation.
+ * - override: If this is an override, the text to show for that.
+ * - throws: Documentation of thown exceptions.
+ * - class: If this is a method, the text for the class section.
+ * - see: See also documentation.
+ * - deprecated: Deprecated documentation.
+ * - related_topics: Related topics documentation.
+ * - call_links: Links to calling functions, hook implementations, etc.
+ * - defined: HTML reference to file that defines this function.
+ * - namespace: Name of the namespace for this function, if any.
+ * - code: HTML-formatted declaration and code of this function.
+ * - branch: Object with information about the branch.
+ * - object: Object with information about the function.
+ * - defined: HTML reference to file that defines this function.
+ *
+ * @see api_preprocess_api_object_page()
+ *
+ * @ingroup themeable
+ */
+#}
+{{ alternatives }}
+
+{{ documentation|safe_markup }}
+
+{% if parameters|render|striptags|trim %}
+  <h3>{{'Parameters'|t }}</h3>
+  {{ parameters|safe_markup }}
+{% endif %}
+
+{% if return|render|striptags|trim %}
+  <h3>{{'Return value'|t }}</h3>
+  {{ return|safe_markup }}
+{% endif %}
+
+{% if throws|render|striptags|trim %}
+  <h3>{{'Throws'|t }}</h3>
+  {{ throws|safe_markup }}
+{% endif %}
+
+{{ override|safe_markup }}
+
+{% if deprecated|render|striptags|trim %}
+  <div class="api-deprecated">
+    <h3>{{'Deprecated'|t }}</h3>
+    {{ deprecated|safe_markup }}
+  </div>
+{% endif %}
+
+{% if see|render|striptags|trim %}
+  <h3>{{'See also'|t }}</h3>
+  {{ see|safe_markup }}
+{% endif %}
+
+{% if related_topics|render|striptags|trim %}
+  <h3>{{'Related topics'|t }}</h3>
+  {{ related_topics }}
+{% endif %}
+
+{% for link in call_links %}
+  {{ link|safe_markup }}
+{% endfor %}
+
+<h3>{{'File'|t }}</h3>
+{{ defined }}
+
+{% if class|render|striptags|trim %}
+  <h3>{{'Class'|t }}</h3>
+  {{ class }}
+{% endif %}
+
+{% if namespace|render|striptags|trim %}
+  <h3>{{'Namespace'|t }}</h3>
+  {{ namespace|safe_markup }}
+{% endif %}
+
+<h3>{{'Code'|t }}</h3>
+{{ code|safe_markup }}
+
+{{ comments }}
