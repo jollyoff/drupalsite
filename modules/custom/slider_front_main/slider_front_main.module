@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * Implements hook_help().
+ */
+function slider_front_main_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.your_module':
+      return '<p>' . t('A simple module to include a slider on certain blocks.') . '</p>';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block templates.
+ */
+function slider_front_main_preprocess_block(&$variables) {
+  if ($variables['plugin_id'] == 'views_block__golovne_block_1') {
+    $variables['#attached']['library'][] = 'slider_front_main/slider';
+  }
+}
+
