@@ -1,12 +1,7 @@
-.region-breadcrumb   {
-  text-transform: uppercase;
-  font-size: 13px;
-  padding: 2rem 0;
-  color: #000000;
-  background-color: #e8e8e8;
-  display: flex;
-  justify-content: center;
+.region-breadcrumb{
+
 }
+
 .region-breadcrumb a {
   color: #000000;
 }
@@ -24,6 +19,15 @@
   position: absolute;
   right: -1.5rem;
   top: 0;
+}
+.region-breadcrumb{
+  text-transform: uppercase;
+  font-size: 13px;
+  padding: 2rem 0;
+  color: #000000;
+  background-color: #e8e8e8;
+  display: flex;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=breadcrumb.css.map */

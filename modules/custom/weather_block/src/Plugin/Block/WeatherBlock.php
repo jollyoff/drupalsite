@@ -20,8 +20,12 @@ class WeatherBlock extends BlockBase {
    */
   public function build() {
     $form = \Drupal::formBuilder()->getForm('\Drupal\weather_block\Form\CityForm');
+    $output = '<div>';
+    $output .= '<img src="../../../../../../themes/custom/drupalsite/assets/images/5538410.png" alt="Weather Image" />';
+    $output .= '</div>';
+
     return [
-      '#markup' => $this->t(''),
+      '#markup' => $output,
       '#prefix' => render($form),
     ];
   }

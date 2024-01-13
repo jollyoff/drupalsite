@@ -11,3 +11,9 @@ global:
       assets/css/views.css: {}
       assets/css/breadcrumb.css: {}
       assets/css/comment.css: {}
+      assets/css/main-slider.css: {}
+      assets/css/contact-form.css: {}
+      assets/css/weather-block.css: {}
+slider:
+  js:
+    js/popup-weather-block.js: {}

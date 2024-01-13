@@ -22,7 +22,12 @@
 {% if content %}
   <header{{ attributes.addClass(classes) }}>
     <div class="header-wrap">
-      {{ content }}
+      <div class="logo">
+        <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">
+          <img src="/themes/custom/drupalsite/assets/images/MAIN LOGO HDU SMALL.png" alt="{{ 'Home'|t }}" />
+        </a>
+      </div>
+        {{ content }}
     </div>
   </header>
 {% endif %}

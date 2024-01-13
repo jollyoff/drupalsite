@@ -76,6 +76,7 @@
     indicator here would break the render cache.
   #}
   <div class="information-comment">
+    <div class="user_comment_picture">{{ user_picture }}</div>
   <p>Автор: {{ author }}</p>
   <p>Дата: {{ comment.created()|date('d.m.Y') }}</p>
   </div>
@@ -91,7 +92,6 @@
   <div class="comment-content" {{ content_attributes }}>
     {% if title %}
       {{ title_prefix }}
-      <h3{{ title_attributes }}>{{ title }}</h3>
       {{ title_suffix }}
     {% endif %}
     {{ content }}

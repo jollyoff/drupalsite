@@ -41,16 +41,15 @@ class InstallerTranslationQueryTest extends InstallerTestBase {
     $this->translations['Save and continue'] = 'Save and continue de';
 
     // Check the language direction.
-    $direction = current($this->xpath('/@dir'))->getText();
-    $this->assertEqual($direction, 'ltr');
+    $this->assertSession()->elementTextEquals('xpath', '/@dir', 'ltr');
   }
 
   /**
    * {@inheritdoc}
    */
   protected function setUpLanguage() {
-    // The language was was preset by passing a query parameter in the URL, so
-    // no explicit language selection is necessary.
+    // The language was preset by passing a query parameter in the URL, so no
+    // explicit language selection is necessary.
   }
 
   /**
@@ -62,8 +61,8 @@ class InstallerTranslationQueryTest extends InstallerTestBase {
 
     // Verify German was configured but not English.
     $this->drupalGet('admin/config/regional/language');
-    $this->assertText('German');
-    $this->assertNoText('English');
+    $this->assertSession()->pageTextContains('German');
+    $this->assertSession()->pageTextNotContains('English');
   }
 
   /**

@@ -1,0 +1,7 @@
+.DS_Store
+phpunit.xml
+vendor
+build
+tools
+.idea
+.phpunit.result.cache

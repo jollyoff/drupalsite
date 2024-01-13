@@ -1,0 +1,10 @@
+.DS_Store
+.idea
+phpunit.xml
+build
+vendor
+main.php
+.phpunit.result.cache
+config.json
+auth.json
+tools

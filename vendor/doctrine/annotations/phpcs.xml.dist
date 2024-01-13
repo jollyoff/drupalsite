@@ -51,6 +51,7 @@
         <exclude-pattern>*/tests/Doctrine/Tests/Common/Annotations/Fixtures/*</exclude-pattern>
     </rule>
     <rule ref="SlevomatCodingStandard.Commenting.ForbiddenAnnotations.AnnotationForbidden">
+        <exclude-pattern>*/tests/Doctrine/Tests/Common/Annotations/AbstractReaderTest.php</exclude-pattern>
         <exclude-pattern>*/tests/Doctrine/Tests/Common/Annotations/Fixtures/*</exclude-pattern>
     </rule>
     <rule ref="SlevomatCodingStandard.Namespaces.UseDoesNotStartWithBackslash.UseStartsWithBackslash">
@@ -150,5 +151,9 @@
     <rule ref="Generic.NamingConventions.UpperCaseConstantName.ClassConstantNotUpperCase">
         <!-- Usage of mixed case constants seems pretty deliberate here -->
         <exclude-pattern>*/lib/Doctrine/Common/Annotations/ImplicitlyIgnoredAnnotationNames.php</exclude-pattern>
+    </rule>
+
+    <rule ref="Squiz.Functions.GlobalFunction.Found">
+        <exclude-pattern>*/tests/Doctrine/Tests/Common/Annotations/Fixtures/functions.php</exclude-pattern>
     </rule>
 </ruleset>

@@ -39,5 +39,3 @@ services:
     ports:
       - "8181:80"
 
-volumes:
-  mariadb_data:

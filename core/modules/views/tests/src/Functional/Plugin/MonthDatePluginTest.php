@@ -48,12 +48,16 @@ class MonthDatePluginTest extends ViewTestBase {
   /**
    * {@inheritdoc}
    */
-  public function setUp($import_test_views = TRUE): void {
-    parent::setUp($import_test_views);
-    $date1 = '2020-10-01 00:00:00';
-    $this->node1 = $this->drupalCreateNode(['created' => strtotime($date1)]);
-    $date2 = '2020-11-01 00:00:00';
-    $this->node2 = $this->drupalCreateNode(['created' => strtotime($date2)]);
+  public function setUp($import_test_views = TRUE, $modules = ['views_test_config']): void {
+    parent::setUp($import_test_views, $modules);
+    $utc = new \DateTimeZone('UTC');
+    $format = 'Y-m-d h:i:s';
+    $this->node1 = $this->drupalCreateNode([
+      'created' => \DateTime::createFromFormat($format, '2020-10-01 00:00:00', $utc)->getTimestamp(),
+    ]);
+    $this->node2 = $this->drupalCreateNode([
+      'created' => \DateTime::createFromFormat($format, '2020-11-01 00:00:00', $utc)->getTimestamp(),
+    ]);
   }
 
   /**

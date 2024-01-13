@@ -1,0 +1,30 @@
+#weather-block-city-form {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 1;
+  column-count: 2;
+  column-gap: 20px;
+}
+
+.block-weather-block h2{
+  color: #fff;
+}
+
+#block-weatherblock:hover #weather-block-city-form {
+  display: block;
+  top: 100%;
+  left: 0;
+}
+
+#weather-block-city-form ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#weather-block-city-form li {
+  margin-bottom: 10px;
+}

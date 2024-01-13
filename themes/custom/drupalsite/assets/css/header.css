@@ -1,23 +1,29 @@
 .header {
-  background-color: #c41e3a; }
+  background-color: #060808; }
   .header-wrap {
     max-width: 114rem;
     margin: 0 auto;
     display: grid;
     grid-gap: clamp(20px, 2vw, 50px);
-    grid-template-columns: auto 1fr auto; }
-  .header .current_time {
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    right: 48.5%;
-    top: 9.83rem;
-    font-size: 24px;
-    font-weight: bold;
-    color: #e8e8e8; }
+    grid-template-columns: 80px 80px 80px 1fr auto;
+  }
+  .header .block-search{
+    justify-content: flex-end;
+  }
+  .header .logo {
+    height: 80px;
+    width: 80px;
+    transition: transform 0.3s ease-in-out;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  .logo:hover{
+    transform: scale(1.1);
+  }
 
 header {
-  padding: 2rem 1rem; }
+  padding: 0; }
   header .block {
     display: flex;
     align-items: center; }
@@ -36,4 +42,10 @@ header {
   text-transform: uppercase;
   font-size: 2rem;
   color: #e8e8e8;
-  text-decoration: none; }
+  text-decoration: none;
+  transition: color 0.5s ease-in-out;
+  &:hover {
+    color: #fff;
+  }
+}
+

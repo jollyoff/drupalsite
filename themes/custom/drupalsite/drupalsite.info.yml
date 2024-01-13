@@ -6,6 +6,7 @@ base theme: false
 
 libraries:
   - drupalsite/global
+  - drupalsite/slider
 
 regions:
   header: 'Header'
@@ -14,4 +15,3 @@ regions:
   help: Help
   content: Content
   footer: 'Footer'
-
