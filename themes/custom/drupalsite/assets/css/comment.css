@@ -1,6 +1,13 @@
 .links {
   display: flex;
 }
+
+#edit-comment-body-0-value{
+  width: 640px;
+  resize: unset;
+  height: 100px;
+}
+
 .links li {
   list-style: none;
 }

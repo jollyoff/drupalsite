@@ -20,6 +20,7 @@ class ComposerStaticInit48503dd3d6baa975ac971fa8fcf99e5c
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         '3e41e0554275033aae3e9e7e056c2d14' => __DIR__ . '/..' . '/longwave/laminas-diactoros/src/functions/create_uploaded_file.php',
         'f4ee20bfdee1006b0970e8d951bea11e' => __DIR__ . '/..' . '/longwave/laminas-diactoros/src/functions/marshal_headers_from_sapi.php',
         '039b4ca04402a921dc2af19c2e8c1f6e' => __DIR__ . '/..' . '/longwave/laminas-diactoros/src/functions/marshal_method_from_sapi.php',
@@ -36,11 +37,11 @@ class ComposerStaticInit48503dd3d6baa975ac971fa8fcf99e5c
         '6a77975e917fcf1582f1467d916545de' => __DIR__ . '/..' . '/longwave/laminas-diactoros/src/functions/normalize_server.legacy.php',
         '65d28722cbac54041593541c6e32acc5' => __DIR__ . '/..' . '/longwave/laminas-diactoros/src/functions/normalize_uploaded_files.legacy.php',
         'bef1cc96c7d36a38fa2d1ce60deb9d54' => __DIR__ . '/..' . '/longwave/laminas-diactoros/src/functions/parse_cookie_header.legacy.php',
-        'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         '2f69d3914119f042cca9e44442d5ce95' => __DIR__ . '/../..' . '/core/includes/bootstrap.inc',
         '6db5533840cb1ae1bc049452845aa88e' => __DIR__ . '/../..' . '/core/includes/guzzle_php81_shim.php',
         '952683d815ff0a7bf322b93c0be7e4e4' => __DIR__ . '/..' . '/chi-teck/drupal-code-generator/src/bootstrap.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
+        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -52,6 +53,7 @@ class ComposerStaticInit48503dd3d6baa975ac971fa8fcf99e5c
         'T' => 
         array (
             'Twig\\' => 5,
+            'TijsVerkoyen\\CssToInlineStyles\\' => 31,
             'TYPO3\\PharStreamWrapper\\' => 24,
         ),
         'S' => 
@@ -84,6 +86,7 @@ class ComposerStaticInit48503dd3d6baa975ac971fa8fcf99e5c
             'Symfony\\Component\\ErrorHandler\\' => 31,
             'Symfony\\Component\\DependencyInjection\\' => 38,
             'Symfony\\Component\\Debug\\' => 24,
+            'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Cmf\\Component\\Routing\\' => 30,
             'Symfony\\Bridge\\PsrHttpMessage\\' => 30,
@@ -114,6 +117,10 @@ class ComposerStaticInit48503dd3d6baa975ac971fa8fcf99e5c
             'Laminas\\Escaper\\' => 16,
             'Laminas\\Diactoros\\' => 18,
         ),
+        'H' => 
+        array (
+            'Html2Text\\' => 10,
+        ),
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
@@ -132,7 +139,6 @@ class ComposerStaticInit48503dd3d6baa975ac971fa8fcf99e5c
             'Drush\\Internal\\' => 15,
             'Drush\\' => 6,
             'Drupal\\plugin\\' => 14,
-            'Drupal\\currency\\' => 16,
             'Drupal\\Driver\\' => 14,
             'Drupal\\Core\\' => 12,
             'Drupal\\Composer\\Plugin\\VendorHardening\\' => 39,
@@ -155,8 +161,6 @@ class ComposerStaticInit48503dd3d6baa975ac971fa8fcf99e5c
             'Consolidation\\AnnotatedCommand\\' => 31,
             'Composer\\Semver\\' => 16,
             'Composer\\Installers\\' => 20,
-            'Commercie\\Currency\\' => 19,
-            'Commercie\\CurrencyExchange\\' => 27,
         ),
         'A' => 
         array (
@@ -176,6 +180,10 @@ class ComposerStaticInit48503dd3d6baa975ac971fa8fcf99e5c
         'Twig\\' => 
         array (
             0 => __DIR__ . '/..' . '/twig/twig/src',
+        ),
+        'TijsVerkoyen\\CssToInlineStyles\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src',
         ),
         'TYPO3\\PharStreamWrapper\\' => 
         array (
@@ -293,6 +301,10 @@ class ComposerStaticInit48503dd3d6baa975ac971fa8fcf99e5c
         array (
             0 => __DIR__ . '/..' . '/symfony/debug',
         ),
+        'Symfony\\Component\\CssSelector\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/css-selector',
+        ),
         'Symfony\\Component\\Console\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
@@ -362,6 +374,11 @@ class ComposerStaticInit48503dd3d6baa975ac971fa8fcf99e5c
         array (
             0 => __DIR__ . '/..' . '/longwave/laminas-diactoros/src',
         ),
+        'Html2Text\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/html2text/html2text/src',
+            1 => __DIR__ . '/..' . '/html2text/html2text/test',
+        ),
         'GuzzleHttp\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
@@ -401,10 +418,6 @@ class ComposerStaticInit48503dd3d6baa975ac971fa8fcf99e5c
         'Drupal\\plugin\\' => 
         array (
             0 => __DIR__ . '/../..' . '/modules/contrib/plugin/src',
-        ),
-        'Drupal\\currency\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/modules/contrib/currency/src',
         ),
         'Drupal\\Driver\\' => 
         array (
@@ -481,14 +494,6 @@ class ComposerStaticInit48503dd3d6baa975ac971fa8fcf99e5c
         'Composer\\Installers\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',
-        ),
-        'Commercie\\Currency\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/commercie/currency/src',
-        ),
-        'Commercie\\CurrencyExchange\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/commercie/currency-exchange/src',
         ),
         'Asm89\\Stack\\' => 
         array (

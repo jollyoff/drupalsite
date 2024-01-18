@@ -1,0 +1,86 @@
+.profile{
+  max-width: 116rem;
+  padding: 0 1rem;
+  margin: auto;
+  text-align: center;
+  font-size: 18px;
+}
+
+.block-field-blockuseruseruser-picture img {
+  max-width: 100%;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  margin: 10px;
+}
+
+.block-field-blockuserusermail a{
+  font-weight: bold;
+  color: #333;
+  margin: 10px;
+}
+
+.block-field-blockuseruserroles {
+  font-style: italic;
+  color: #555;
+  margin: 10px;
+}
+
+.block-field-blockuseruseraccess {
+  font-size: 14px;
+  color: #777;
+  margin: 10px;
+}
+
+.block-field-blockuseruserlogin {
+  font-size: 14px;
+  color: #777;
+  margin: 10px;
+}
+
+.block-extra-field-blockuserusermember-for {
+  font-weight: bold;
+  color: #555;
+  margin: 10px;
+}
+
+.block-shortcuts a {
+  margin-bottom: 10px;
+  width: 170px;
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #4285f4;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.block-shortcuts ul{
+  list-style: none;
+}
+
+/* Hover-эффект для кнопок "Shortcuts" */
+.block-shortcuts a:hover {
+  background-color: #1a73e8;
+}
+
+.block-local-tasks-block ul{
+  list-style: none;
+}
+
+.block-local-tasks-block a{
+  margin-bottom: 10px;
+  width: 170px;
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #4285f4;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.block-local-tasks-block a:hover {
+  background-color: #1a73e8;
+}

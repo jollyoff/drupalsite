@@ -1,21 +1,17 @@
-document.addEventListener('DOMContentLoaded', function () {
-  var popup = document.getElementById('weather-block-city-form');
+jQuery(document).ready(function($) {
+  var mainItem = $('#block-weatherblock');
+  var popup = $('#weather-block-city-form');
 
-  // Проверка наличия элемента перед добавлением слушателя событий
-  var mainItem = document.getElementById('block-weatherblock');
-
-  if (mainItem) {
-    mainItem.addEventListener('mouseover', function () {
-      // ваш код обработчика события здесь
-    });
-  } else {
-    console.error('Элемент с id "mainItem" не найден.');
-  }
-
+  // Обработчик события при наведении на главный элемент
+  mainItem.on('mouseover', function () {
+    // Показываем всплывающее окно
+    popup.show();
+  });
 
   // Обработчик события при уходе курсора с главного элемента
-  mainItem.addEventListener('mouseout', function () {
+  mainItem.on('mouseout', function () {
     // Скрываем всплывающее окно
-    popup.style.display = 'none';
+    popup.hide();
   });
 });
+

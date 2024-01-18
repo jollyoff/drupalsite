@@ -1,8 +1,0 @@
-name: 'Slider JS Front page Main'
-type: module
-description: 'Description of my module.'
-package: Custom
-core_version_requirement: ^8 || ^9
-js:
-  js/slider.js: {}
-

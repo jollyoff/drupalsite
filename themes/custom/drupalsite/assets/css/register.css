@@ -1,0 +1,81 @@
+#user-register-form {
+  max-width: 600px;
+  background-color: #fff;
+  border: 2px solid rgba(0, 0, 0, 0.25);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  margin: 2em auto 0;
+}
+
+#edit-account {
+  padding: 0 1em;
+}
+
+#edit-user-picture-wrapper{
+  padding: 0 1em;
+}
+
+#user-register-form .form-item {
+  display: flex;
+  flex-direction: column;
+  margin: 1em 0;
+}
+
+#user-register-form .form-item.form-item-mail .edit-mail-description {
+  font-size: 11px;
+  color: #777;
+  padding-left: 10px;
+}
+
+
+#user-register-form .form-item.form-item-name label {
+  display: block;
+  font-weight: normal;
+}
+
+#user-register-form .form-item.form-item-name input {
+  border: 1px solid #aaa;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+#user-register-form .form-item.form-item-pass-pass2 label {
+  display: block;
+  font-weight: normal;
+  margin: 1em 0;
+}
+
+#user-register-form .form-item.form-item-pass-pass2 input {
+  border: 1px solid #aaa;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+#user-register-form .form-item.form-item-user-picture {
+  margin: 1em 0;
+}
+
+.back-to-login {
+  float: right;
+  margin: 1em 1em .125em 0;
+}
+
+.back-to-login a{
+  font-weight: bold;
+  color: #333;
+}
+
+#edit-account.form-text,
+#edit-account.form-control {
+  border: 2px solid #dadada;
+  max-width: 375px;
+  overflow: hidden;
+}
+
+#edit-account.form-text:focus,
+#edit-account.form-control:focus {
+  outline: none;
+  border-color: #0088cc;
+  box-shadow: 0 0 8px #9ecaed;
+}

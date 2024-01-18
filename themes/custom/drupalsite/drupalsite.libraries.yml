@@ -14,8 +14,12 @@ global:
       assets/css/main-slider.css: {}
       assets/css/contact-form.css: {}
       assets/css/weather-block.css: {}
+      assets/css/user-page.css: {}
+      assets/css/search-page.css: {}
+      assets/css/register.css: {}
 slider:
   js:
-    "https://code.jquery.com/jquery-3.2.4.min.js": { type: external, minified: true }
+    "https://code.jquery.com/jquery-3.5.4.min.js": { type: external, minified: true }
     "https://cdnjs.cloudflare.com/ajax/libs/jquery.cycle/3.0.3/jquery.cycle.all.min.js": { type: external, minified: true }
     js/popup-weather-block.js: {}
+    js/slider_adaptation.js: {}

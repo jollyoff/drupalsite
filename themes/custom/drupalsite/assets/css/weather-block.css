@@ -1,12 +1,20 @@
+#block-weatherblock{
+  width: 40px;
+  height: 40px;
+  align-self: center;
+}
+
 #weather-block-city-form {
-  display: none;
   position: absolute;
+  top: 50px;
+  left: 50px;
   background-color: #fff;
   border: 1px solid #ccc;
   padding: 10px;
-  z-index: 1;
+  z-index: 7;
   column-count: 2;
   column-gap: 20px;
+  display: none;
 }
 
 .block-weather-block h2{
@@ -15,8 +23,6 @@
 
 #block-weatherblock:hover #weather-block-city-form {
   display: block;
-  top: 100%;
-  left: 0;
 }
 
 #weather-block-city-form ul {

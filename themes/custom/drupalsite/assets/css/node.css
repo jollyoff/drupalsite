@@ -1,6 +1,13 @@
 .teaser-link {
   position: relative;
 }
+
+.block-field-blocknodearticletitle{
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
 .teaser-link-href {
   position: absolute;
   left: 0;

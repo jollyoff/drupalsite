@@ -1,0 +1,32 @@
+.search-form {
+  margin-bottom: 20px;
+}
+
+.search-form .edit-basic {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.search-form #edit-submit {
+  background-color: #4285f4;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-form #edit-keys {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.search-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+

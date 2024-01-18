@@ -5,10 +5,6 @@
   flex-direction: column;
 }
 
-#contact-message-feedback-form #edit-name, #edit-mail, #edit-subject-wrapper, #edit-field-number-wrapper, #edit-message-wrapper{
-  padding: 10px 0 0 0;
-}
-
 #contact-message-feedback-form #edit-submit{
   color: #fff;
   background-color: #060808;
@@ -27,8 +23,8 @@
 }
 
 #contact-message-feedback-form input {
-  width: 100%;
-  box-sizing: border-box;
+  width: 100%; !important;
+  box-sizing: border-box; !important;
 }
 
 #contact-message-feedback-form textarea{

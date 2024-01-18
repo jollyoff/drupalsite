@@ -111,110 +111,6 @@
             "install-path": "../chi-teck/drupal-code-generator"
         },
         {
-            "name": "commercie/currency",
-            "version": "1.2.0",
-            "version_normalized": "1.2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Commercie/currency.git",
-                "reference": "a175cdcf45a08d5a234146b9a3fd74e42d98a692"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Commercie/currency/zipball/a175cdcf45a08d5a234146b9a3fd74e42d98a692",
-                "reference": "a175cdcf45a08d5a234146b9a3fd74e42d98a692",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": "~5.5 || ~7.0 || ~8.0"
-            },
-            "require-dev": {
-                "justinrainbow/json-schema": "~5.2",
-                "phpunit/phpunit": "~9.0"
-            },
-            "suggest": {
-                "drupal/currency": "Integrates this package with Drupal."
-            },
-            "time": "2022-09-11T08:27:10+00:00",
-            "type": "library",
-            "installation-source": "dist",
-            "autoload": {
-                "psr-4": {
-                    "Commercie\\Currency\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Bart Feenstra",
-                    "email": "bart@mynameisbart.com",
-                    "homepage": "http://mynameisbart.com",
-                    "role": "Developer"
-                }
-            ],
-            "support": {
-                "issues": "https://github.com/Commercie/currency/issues",
-                "source": "https://github.com/Commercie/currency/tree/1.2.0"
-            },
-            "install-path": "../commercie/currency"
-        },
-        {
-            "name": "commercie/currency-exchange",
-            "version": "1.3.0",
-            "version_normalized": "1.3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Commercie/currency-exchange.git",
-                "reference": "9284d3d1b5d6492baf8ede9f16f8ba9e66e98122"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Commercie/currency-exchange/zipball/9284d3d1b5d6492baf8ede9f16f8ba9e66e98122",
-                "reference": "9284d3d1b5d6492baf8ede9f16f8ba9e66e98122",
-                "shasum": ""
-            },
-            "require": {
-                "ext-bcmath": "*",
-                "ext-json": "*",
-                "php": "~7.1 || ~8.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~9.0"
-            },
-            "suggest": {
-                "commercie/currency-exchange-yahoo-finance": "Retrieves currency exchange rates from Yahoo! Finance.",
-                "drupal/currency": "Integrates this package with Drupal."
-            },
-            "time": "2022-09-11T11:12:50+00:00",
-            "type": "library",
-            "installation-source": "dist",
-            "autoload": {
-                "psr-4": {
-                    "Commercie\\CurrencyExchange\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Bart Feenstra",
-                    "email": "bart@mynameisbart.com"
-                }
-            ],
-            "description": "A library for retrieving currency exchange rates.",
-            "support": {
-                "issues": "https://github.com/Commercie/currency-exchange/issues",
-                "source": "https://github.com/Commercie/currency-exchange/tree/1.3.0"
-            },
-            "install-path": "../commercie/currency-exchange"
-        },
-        {
             "name": "composer/installers",
             "version": "v1.12.0",
             "version_normalized": "1.12.0.0",
@@ -1819,67 +1715,6 @@
             "install-path": "../drupal/core-vendor-hardening"
         },
         {
-            "name": "drupal/currency",
-            "version": "3.4.0",
-            "version_normalized": "3.4.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/currency.git",
-                "reference": "8.x-3.4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/currency-8.x-3.4.zip",
-                "reference": "8.x-3.4",
-                "shasum": "6e34b609a3712c8cc982a7f3e221bd0407751e6a"
-            },
-            "require": {
-                "commercie/currency": "~1.0",
-                "commercie/currency-exchange": "~1.0",
-                "drupal/core": "^9.1 || ^10",
-                "drupal/plugin": "^2.6",
-                "ext-bcmath": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "8.x-3.4",
-                    "datestamp": "1666817430",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "installation-source": "dist",
-            "autoload": {
-                "psr-4": {
-                    "Drupal\\currency\\": "src"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Drupal\\Tests\\currency\\": "tests/src"
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Berdir",
-                    "homepage": "https://www.drupal.org/user/214652"
-                }
-            ],
-            "description": "Provides your Drupal site with currency conversion, currency information & metadata, and amount/price display functionality.",
-            "homepage": "https://www.drupal.org/project/currency",
-            "support": {
-                "source": "https://git.drupalcode.org/project/currency"
-            },
-            "install-path": "../../modules/contrib/currency"
-        },
-        {
             "name": "drupal/easy_breadcrumb",
             "version": "2.0.0",
             "version_normalized": "2.0.0.0",
@@ -1966,95 +1801,31 @@
             "install-path": "../../modules/contrib/easy_breadcrumb"
         },
         {
-            "name": "drupal/exchange_rates",
-            "version": "1.3.0",
-            "version_normalized": "1.3.0.0",
+            "name": "drupal/mailsystem",
+            "version": "4.4.0",
+            "version_normalized": "4.4.0.0",
             "source": {
                 "type": "git",
-                "url": "https://git.drupalcode.org/project/exchange_rates.git",
-                "reference": "8.x-1.3"
+                "url": "https://git.drupalcode.org/project/mailsystem.git",
+                "reference": "8.x-4.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/exchange_rates-8.x-1.3.zip",
-                "reference": "8.x-1.3",
-                "shasum": "3a914b30bc52a7f649ce809dde9408e8f0a57e78"
-            },
-            "require": {
-                "drupal/core": "^8 || ^9"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "8.x-1.3",
-                    "datestamp": "1591478544",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "installation-source": "dist",
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "dystopianblue",
-                    "homepage": "https://www.drupal.org/user/819744"
-                }
-            ],
-            "description": "Converts a base currency into multiple foreign currencies using exchangeratesapi.io",
-            "homepage": "https://www.drupal.org/project/exchange_rates",
-            "support": {
-                "source": "https://git.drupalcode.org/project/exchange_rates"
-            },
-            "install-path": "../../modules/contrib/exchange_rates"
-        },
-        {
-            "name": "drupal/flexslider",
-            "version": "3.0.0-alpha1",
-            "version_normalized": "3.0.0.0-alpha1",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/flexslider.git",
-                "reference": "3.0.0-alpha1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/flexslider-3.0.0-alpha1.zip",
-                "reference": "3.0.0-alpha1",
-                "shasum": "6a2458db101bba5d1d4d4eb6c94fa2f1d88367bb"
+                "url": "https://ftp.drupal.org/files/projects/mailsystem-8.x-4.4.zip",
+                "reference": "8.x-4.4",
+                "shasum": "49b2e9efd090cdb4a282c7638b1c76d6723c47b6"
             },
             "require": {
                 "drupal/core": "^9 || ^10"
             },
-            "require-dev": {
-                "dropfort/dropfort_module_build": "^2.0@beta",
-                "drupal/flexslider_fields": "*",
-                "drupal/flexslider_views": "*"
-            },
-            "suggest": {
-                "woothemes/flexslider": "~2.0"
-            },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "3.0.0-alpha1",
-                    "datestamp": "1694114706",
+                    "version": "8.x-4.4",
+                    "datestamp": "1657576306",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Alpha releases are not covered by Drupal security advisories."
-                    }
-                },
-                "drupal-scaffold": {
-                    "gitignore": false,
-                    "allowed-packages": [
-                        "dropfort/dropfort_module_build"
-                    ],
-                    "locations": {
-                        "web-root": "drupal-ignore/"
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -2065,34 +1836,36 @@
             ],
             "authors": [
                 {
-                    "name": "FlexSlider Module Contributors",
-                    "homepage": "https://www.drupal.org/node/1316346/committers",
-                    "role": "Contributors"
+                    "name": "Berdir",
+                    "homepage": "https://www.drupal.org/user/214652"
                 },
                 {
-                    "name": "ClassicCut",
-                    "homepage": "https://www.drupal.org/user/2703101"
+                    "name": "Les Lim",
+                    "homepage": "https://www.drupal.org/user/84263"
                 },
                 {
-                    "name": "minorOffense",
-                    "homepage": "https://www.drupal.org/user/129088"
+                    "name": "Manuel Garcia",
+                    "homepage": "https://www.drupal.org/user/213194"
                 },
                 {
-                    "name": "ryanwebpage",
-                    "homepage": "https://www.drupal.org/user/737596"
+                    "name": "miro_dietiker",
+                    "homepage": "https://www.drupal.org/user/227761"
                 },
                 {
-                    "name": "spotzero",
-                    "homepage": "https://www.drupal.org/user/657848"
+                    "name": "Nafes",
+                    "homepage": "https://www.drupal.org/user/2489926"
+                },
+                {
+                    "name": "pillarsdotnet",
+                    "homepage": "https://www.drupal.org/user/36148"
                 }
             ],
-            "description": "FlexSlider 2 integration for Drupal",
-            "homepage": "https://www.drupal.org/project/flexslider",
+            "description": "Mail System",
+            "homepage": "https://www.drupal.org/project/mailsystem",
             "support": {
-                "source": "https://git.drupalcode.org/project/flexslider",
-                "issues": "https://drupal.org/project/issues/flexslider"
+                "source": "https://git.drupalcode.org/project/mailsystem"
             },
-            "install-path": "../../modules/contrib/flexslider"
+            "install-path": "../../modules/contrib/mailsystem"
         },
         {
             "name": "drupal/plugin",
@@ -2205,6 +1978,79 @@
                 "source": "https://git.drupalcode.org/project/super_login"
             },
             "install-path": "../../modules/contrib/super_login"
+        },
+        {
+            "name": "drupal/swiftmailer",
+            "version": "2.4.0",
+            "version_normalized": "2.4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/swiftmailer.git",
+                "reference": "8.x-2.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/swiftmailer-8.x-2.4.zip",
+                "reference": "8.x-2.4",
+                "shasum": "790c682ea8774b4e03200db2c2426966d3564820"
+            },
+            "require": {
+                "drupal/core": "^8.9.11 || ^9.0.10 || ^10",
+                "drupal/mailsystem": "^4.1.0",
+                "egulias/email-validator": "^2.0||^3",
+                "html2text/html2text": "^4.0.1",
+                "php": ">=7.0.0",
+                "swiftmailer/swiftmailer": "^6.1.3",
+                "tijsverkoyen/css-to-inline-styles": "^2.2"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-2.4",
+                    "datestamp": "1673559953",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "installation-source": "source",
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "AdamPS",
+                    "homepage": "https://www.drupal.org/user/2650563"
+                },
+                {
+                    "name": "Anybody",
+                    "homepage": "https://www.drupal.org/user/291091"
+                },
+                {
+                    "name": "B-Prod",
+                    "homepage": "https://www.drupal.org/user/407852"
+                },
+                {
+                    "name": "geek-merlin",
+                    "homepage": "https://www.drupal.org/user/229048"
+                },
+                {
+                    "name": "sbrattla",
+                    "homepage": "https://www.drupal.org/user/53422"
+                },
+                {
+                    "name": "webflo",
+                    "homepage": "https://www.drupal.org/user/254778"
+                }
+            ],
+            "description": "Swiftmailer",
+            "homepage": "https://www.drupal.org/project/swiftmailer",
+            "support": {
+                "source": "https://git.drupalcode.org/project/swiftmailer"
+            },
+            "install-path": "../../modules/contrib/swiftmailer"
         },
         {
             "name": "drupal/views_slideshow",
@@ -2970,6 +2816,50 @@
                 }
             ],
             "install-path": "../guzzlehttp/psr7"
+        },
+        {
+            "name": "html2text/html2text",
+            "version": "4.3.1",
+            "version_normalized": "4.3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mtibben/html2text.git",
+                "reference": "61ad68e934066a6f8df29a3d23a6460536d0855c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mtibben/html2text/zipball/61ad68e934066a6f8df29a3d23a6460536d0855c",
+                "reference": "61ad68e934066a6f8df29a3d23a6460536d0855c",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4"
+            },
+            "suggest": {
+                "ext-mbstring": "For best performance",
+                "symfony/polyfill-mbstring": "If you can't install ext-mbstring"
+            },
+            "time": "2020-04-16T23:44:31+00:00",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-4": {
+                    "Html2Text\\": [
+                        "src/",
+                        "test/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Converts HTML to formatted plain text",
+            "support": {
+                "issues": "https://github.com/mtibben/html2text/issues",
+                "source": "https://github.com/mtibben/html2text/tree/4.3.1"
+            },
+            "install-path": "../html2text/html2text"
         },
         {
             "name": "laminas/laminas-escaper",
@@ -4182,6 +4072,85 @@
             "install-path": "../stack/builder"
         },
         {
+            "name": "swiftmailer/swiftmailer",
+            "version": "v6.3.0",
+            "version_normalized": "6.3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/swiftmailer/swiftmailer.git",
+                "reference": "8a5d5072dca8f48460fce2f4131fcc495eec654c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/8a5d5072dca8f48460fce2f4131fcc495eec654c",
+                "reference": "8a5d5072dca8f48460fce2f4131fcc495eec654c",
+                "shasum": ""
+            },
+            "require": {
+                "egulias/email-validator": "^2.0|^3.1",
+                "php": ">=7.0.0",
+                "symfony/polyfill-iconv": "^1.0",
+                "symfony/polyfill-intl-idn": "^1.10",
+                "symfony/polyfill-mbstring": "^1.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "symfony/phpunit-bridge": "^4.4|^5.4"
+            },
+            "suggest": {
+                "ext-intl": "Needed to support internationalized email addresses"
+            },
+            "time": "2021-10-18T15:26:12+00:00",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "6.2-dev"
+                }
+            },
+            "installation-source": "source",
+            "autoload": {
+                "files": [
+                    "lib/swift_required.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Corbyn"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Swiftmailer, free feature-rich PHP mailer",
+            "homepage": "https://swiftmailer.symfony.com",
+            "keywords": [
+                "email",
+                "mail",
+                "mailer"
+            ],
+            "support": {
+                "issues": "https://github.com/swiftmailer/swiftmailer/issues",
+                "source": "https://github.com/swiftmailer/swiftmailer/tree/v6.3.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/swiftmailer/swiftmailer",
+                    "type": "tidelift"
+                }
+            ],
+            "abandoned": "symfony/mailer",
+            "install-path": "../swiftmailer/swiftmailer"
+        },
+        {
             "name": "symfony-cmf/routing",
             "version": "2.3.4",
             "version_normalized": "2.3.4.0",
@@ -4339,6 +4308,74 @@
                 }
             ],
             "install-path": "../symfony/console"
+        },
+        {
+            "name": "symfony/css-selector",
+            "version": "v7.0.0",
+            "version_normalized": "7.0.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/css-selector.git",
+                "reference": "bb51d46e53ef8d50d523f0c5faedba056a27943e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/bb51d46e53ef8d50d523f0c5faedba056a27943e",
+                "reference": "bb51d46e53ef8d50d523f0c5faedba056a27943e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2"
+            },
+            "time": "2023-10-31T17:59:56+00:00",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\CssSelector\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Jean-François Simon",
+                    "email": "jeanfrancois.simon@sensiolabs.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Converts CSS selectors to XPath expressions",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/css-selector/tree/v7.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "install-path": "../symfony/css-selector"
         },
         {
             "name": "symfony/debug",
@@ -6847,6 +6884,62 @@
                 }
             ],
             "install-path": "../symfony/yaml"
+        },
+        {
+            "name": "tijsverkoyen/css-to-inline-styles",
+            "version": "v2.2.7",
+            "version_normalized": "2.2.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tijsverkoyen/CssToInlineStyles.git",
+                "reference": "83ee6f38df0a63106a9e4536e3060458b74ccedb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tijsverkoyen/CssToInlineStyles/zipball/83ee6f38df0a63106a9e4536e3060458b74ccedb",
+                "reference": "83ee6f38df0a63106a9e4536e3060458b74ccedb",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-libxml": "*",
+                "php": "^5.5 || ^7.0 || ^8.0",
+                "symfony/css-selector": "^2.7 || ^3.0 || ^4.0 || ^5.0 || ^6.0 || ^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.0 || ^7.5 || ^8.5.21 || ^9.5.10"
+            },
+            "time": "2023-12-08T13:03:43+00:00",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2.x-dev"
+                }
+            },
+            "installation-source": "source",
+            "autoload": {
+                "psr-4": {
+                    "TijsVerkoyen\\CssToInlineStyles\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Tijs Verkoyen",
+                    "email": "css_to_inline_styles@verkoyen.eu",
+                    "role": "Developer"
+                }
+            ],
+            "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
+            "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
+            "support": {
+                "issues": "https://github.com/tijsverkoyen/CssToInlineStyles/issues",
+                "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/v2.2.7"
+            },
+            "install-path": "../tijsverkoyen/css-to-inline-styles"
         },
         {
             "name": "twig/twig",
