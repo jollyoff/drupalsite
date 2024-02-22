@@ -25,7 +25,7 @@
         "drupal/easy_breadcrumb": "2.0",
         "drupal/plugin": "2.10",
         "drupal/super_login": "2.1",
-        "drupal/swiftmailer": "2.4",
+        "drupal/swiftmailer": "^2.4",
         "drupal/views_slideshow": "5.0",
         "drush/drush": "^10.6"
     },
