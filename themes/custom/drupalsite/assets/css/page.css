@@ -51,4 +51,140 @@
   line-height: 26px;
 }
 
+.region-bottom-content{
+  width: 100%;
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(3, 340px);
+  max-width: 116rem;
+  padding: 0 1rem;
+  font-size: 18px;
+  margin-left: auto;
+  margin-right: auto;
+  .block-views-blockcomments-recent-block-1{
+    width: 100%;
+    h2{
+      font-size: 20px;
+      font-weight: 600;
+      color: darkblue;
+      text-align: center;
+      margin: 16.6px 0;
+      text-decoration: none;
+      font-family: 'Roboto',sans-serif;
+    }
+    .item-list{
+      ul{
+        list-style: none;
+        li{
+          display: flex;
+          justify-content: space-between;
+          .views-field-subject{
+            span{
+              a{
+                color: #111;
+                text-align: left;
+                vertical-align: middle;
+                text-decoration: none;
+              }
+            }
+          }
+          .views-field-uid{
+            span{
+              color: #c4c4c4;
+              font-size: 12px;
+              line-height: 1;
+              text-transform: capitalize;
+            }
+          }
+        }
+        li:first-child {
+          flex-basis: 75%;
+        }
+
+        li:nth-child(2) {
+          flex-basis: 25%;
+        }
+      }
+    }
+  }
+  .block-fb-likebox{
+    width: 100%;
+    h2{
+      font-size: 20px;
+      font-weight: 600;
+      color: darkblue;
+      text-align: center;
+      margin: 16.6px 0;
+      text-decoration: none;
+      font-family: 'Roboto',sans-serif;
+    }
+  }
+  .block-poll-recent-block{
+    width: 100%;
+    h2{
+      font-size: 20px;
+      font-weight: 600;
+      color: darkblue;
+      text-align: center;
+      margin: 16.6px 0;
+      text-decoration: none;
+      font-family: 'Roboto',sans-serif;
+    }
+    #edit-vote{
+      color: #fff;
+      font-size: 20px;
+      line-height: 23px;
+      border-radius: 4px;
+      padding: 15px 25px;
+      background: darkblue;
+      border: 1px solid darkblue;
+      transition: .2s ease-in;
+      margin: 10px 0;
+    }
+    #edit-vote:hover{
+      color: black;
+      background: white;
+      border: 1px solid black;
+    }
+    #edit-result{
+      color: #fff;
+      font-size: 20px;
+      line-height: 23px;
+      border-radius: 4px;
+      padding: 15px 25px;
+      background: darkblue;
+      border: 1px solid darkblue;
+      transition: .2s ease-in;
+      margin: 10px 0;
+    }
+    #edit-result:hover{
+      color: black;
+      background: white;
+      border: 1px solid black;
+    }
+    #edit-choice{
+      div{
+        color: #111;
+        padding: 10px 0;
+        input{
+          vertical-align: middle;
+          font-family: inherit;
+          font-size: 100%;
+          line-height: 1.15;
+          margin: 0;
+        }
+        label{
+          color: #111;
+          text-align: left;
+          vertical-align: middle;
+          transition: .2s ease-in;
+        }
+        label:hover{
+        color: #c4c4c4;
+      }
+      }
+    }
+  }
+}
+
 /*# sourceMappingURL=page.css.map */

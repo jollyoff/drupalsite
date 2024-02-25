@@ -3,7 +3,10 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/core" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/modules/contrib/fb_likebox" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/modules/contrib/mailsystem" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/modules/contrib/poll" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/modules/contrib/simple_gmap" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/modules/contrib/super_login" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/modules/contrib/swiftmailer" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/modules/contrib/views_slideshow" vcs="Git" />

@@ -7,7 +7,7 @@
   margin: 0 auto;
   display: grid;
   grid-gap: 2rem;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr auto auto;
 }
 
 footer .block {

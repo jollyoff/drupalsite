@@ -14,4 +14,5 @@ regions:
   highLighted: Highlighted
   help: Help
   content: Content
+  bottom_content: Bottom Content
   footer: 'Footer'
